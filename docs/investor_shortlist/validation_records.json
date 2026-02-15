@@ -1,0 +1,402 @@
+[
+  {
+    "id": 28,
+    "name": "Амбарцум Амаякян",
+    "activity_date": "2024 (from source note)",
+    "activity_proof_url": "https://rb.ru/",
+    "proof_quality": "high",
+    "legal_risk_flag": false
+  },
+  {
+    "id": 41,
+    "name": "Алексей Перельман",
+    "activity_date": "2024 (from source note)",
+    "activity_proof_url": "https://rb.ru/",
+    "proof_quality": "high",
+    "legal_risk_flag": false
+  },
+  {
+    "id": 20,
+    "name": "Олег Чельцов",
+    "activity_date": "2024 (RB profile baseline)",
+    "activity_proof_url": "https://rb.ru/data/oleg-cheltsov/",
+    "proof_quality": "high",
+    "legal_risk_flag": false
+  },
+  {
+    "id": 29,
+    "name": "Алексей Блохин",
+    "activity_date": "2024 (from source note)",
+    "activity_proof_url": "https://rb.ru/",
+    "proof_quality": "high",
+    "legal_risk_flag": false
+  },
+  {
+    "id": 36,
+    "name": "Антон Илюшин",
+    "activity_date": "2024 (from source note)",
+    "activity_proof_url": "https://rb.ru/",
+    "proof_quality": "high",
+    "legal_risk_flag": false
+  },
+  {
+    "id": 39,
+    "name": "Сергей Белих",
+    "activity_date": "2024 (from source note)",
+    "activity_proof_url": "https://rb.ru/",
+    "proof_quality": "high",
+    "legal_risk_flag": false
+  },
+  {
+    "id": 27,
+    "name": "Иван Елисеев",
+    "activity_date": "2024 (from source note)",
+    "activity_proof_url": "https://rb.ru/",
+    "proof_quality": "high",
+    "legal_risk_flag": false
+  },
+  {
+    "id": 35,
+    "name": "Евгений Копыркин",
+    "activity_date": "2024 (from source note)",
+    "activity_proof_url": "https://rb.ru/",
+    "proof_quality": "high",
+    "legal_risk_flag": false
+  },
+  {
+    "id": 38,
+    "name": "Анна Бачина",
+    "activity_date": "2024 (from source note)",
+    "activity_proof_url": "https://rb.ru/",
+    "proof_quality": "high",
+    "legal_risk_flag": false
+  },
+  {
+    "id": 12,
+    "name": "Павел Черкашин",
+    "activity_date": "2023-2025 window (document claim)",
+    "activity_proof_url": "https://talari.ru/investors/",
+    "proof_quality": "low",
+    "legal_risk_flag": false
+  },
+  {
+    "id": 22,
+    "name": "Виктор Кох",
+    "activity_date": "2023-2025 window (document claim)",
+    "activity_proof_url": "https://talari.ru/investors/",
+    "proof_quality": "low",
+    "legal_risk_flag": false
+  },
+  {
+    "id": 37,
+    "name": "Илья Галаев",
+    "activity_date": "2024 (from source note)",
+    "activity_proof_url": "https://rb.ru/",
+    "proof_quality": "high",
+    "legal_risk_flag": false
+  },
+  {
+    "id": 5,
+    "name": "Ренат Батыров",
+    "activity_date": "2023-2025 window (document claim)",
+    "activity_proof_url": "https://talari.ru/investors/",
+    "proof_quality": "low",
+    "legal_risk_flag": false
+  },
+  {
+    "id": 50,
+    "name": "Альберт Караватка",
+    "activity_date": "2023-2025 window (document claim)",
+    "activity_proof_url": "https://rb.ru/",
+    "proof_quality": "high",
+    "legal_risk_flag": false
+  },
+  {
+    "id": 10,
+    "name": "Алексей Горячев",
+    "activity_date": "2023-2025 window (document claim)",
+    "activity_proof_url": "https://talari.ru/investors/",
+    "proof_quality": "low",
+    "legal_risk_flag": false
+  },
+  {
+    "id": 25,
+    "name": "Оксана Сорокина",
+    "activity_date": "2024 (from source note)",
+    "activity_proof_url": "https://rb.ru/",
+    "proof_quality": "high",
+    "legal_risk_flag": false
+  },
+  {
+    "id": 43,
+    "name": "Ринат Салихов",
+    "activity_date": "2025 (from source note)",
+    "activity_proof_url": "https://rb.ru/",
+    "proof_quality": "high",
+    "legal_risk_flag": false
+  },
+  {
+    "id": 24,
+    "name": "Андрей Резинкин",
+    "activity_date": "2023-2025 window (document claim)",
+    "activity_proof_url": "https://moneyforstartup.com/",
+    "proof_quality": "medium",
+    "legal_risk_flag": false
+  },
+  {
+    "id": 32,
+    "name": "Андрей Липатов",
+    "activity_date": "2025 (from source note)",
+    "activity_proof_url": "https://rb.ru/",
+    "proof_quality": "high",
+    "legal_risk_flag": false
+  },
+  {
+    "id": 33,
+    "name": "Максим Горбачёв",
+    "activity_date": "2025 (from source note)",
+    "activity_proof_url": "https://rb.ru/",
+    "proof_quality": "high",
+    "legal_risk_flag": false
+  },
+  {
+    "id": 44,
+    "name": "Альберт Алиев",
+    "activity_date": "2025 (from source note)",
+    "activity_proof_url": "https://rb.ru/",
+    "proof_quality": "high",
+    "legal_risk_flag": false
+  },
+  {
+    "id": 8,
+    "name": "Геворк Саркисян",
+    "activity_date": "2023-2025 window (document claim)",
+    "activity_proof_url": "https://talari.ru/investors/",
+    "proof_quality": "low",
+    "legal_risk_flag": false
+  },
+  {
+    "id": 21,
+    "name": "Оскар Хартманн",
+    "activity_date": "2023-2025 window (document claim)",
+    "activity_proof_url": "https://talari.ru/investors/",
+    "proof_quality": "low",
+    "legal_risk_flag": false
+  },
+  {
+    "id": 26,
+    "name": "Леонид Довбенко",
+    "activity_date": "2024 (from source note)",
+    "activity_proof_url": "https://rb.ru/",
+    "proof_quality": "high",
+    "legal_risk_flag": false
+  },
+  {
+    "id": 30,
+    "name": "Сергей Лудин",
+    "activity_date": "2024 (from source note)",
+    "activity_proof_url": "https://rb.ru/",
+    "proof_quality": "high",
+    "legal_risk_flag": false
+  },
+  {
+    "id": 34,
+    "name": "Сергей Солонин",
+    "activity_date": "2024 (from source note)",
+    "activity_proof_url": "https://rb.ru/",
+    "proof_quality": "high",
+    "legal_risk_flag": false
+  },
+  {
+    "id": 4,
+    "name": "Александр Деребенец",
+    "activity_date": "2023-2025 window (document claim)",
+    "activity_proof_url": "https://talari.ru/investors/",
+    "proof_quality": "low",
+    "legal_risk_flag": false
+  },
+  {
+    "id": 11,
+    "name": "Елена Колмакова",
+    "activity_date": "2023-2025 window (document claim)",
+    "activity_proof_url": "https://talari.ru/investors/",
+    "proof_quality": "low",
+    "legal_risk_flag": false
+  },
+  {
+    "id": 13,
+    "name": "Александр Чачава",
+    "activity_date": "2024 (Forbes profile baseline)",
+    "activity_proof_url": "https://www.forbes.ru/profile/aleksandr-chachava",
+    "proof_quality": "high",
+    "legal_risk_flag": false
+  },
+  {
+    "id": 19,
+    "name": "Эдуард Фияксель",
+    "activity_date": "2023-2025 window (document claim)",
+    "activity_proof_url": "https://talari.ru/investors/",
+    "proof_quality": "low",
+    "legal_risk_flag": false
+  },
+  {
+    "id": 23,
+    "name": "Пётр Жуков",
+    "activity_date": "2023-2025 window (document claim)",
+    "activity_proof_url": "https://talari.ru/investors/",
+    "proof_quality": "low",
+    "legal_risk_flag": false
+  },
+  {
+    "id": 40,
+    "name": "Александр Калинин",
+    "activity_date": "2024 (from source note)",
+    "activity_proof_url": "https://rb.ru/",
+    "proof_quality": "high",
+    "legal_risk_flag": false
+  },
+  {
+    "id": 7,
+    "name": "Юлий Зегельман",
+    "activity_date": "2023-2025 window (document claim)",
+    "activity_proof_url": "https://talari.ru/investors/",
+    "proof_quality": "low",
+    "legal_risk_flag": false
+  },
+  {
+    "id": 47,
+    "name": "Андрей Кравцов",
+    "activity_date": "2023-2025 window (document claim)",
+    "activity_proof_url": "https://franchcamp.ru/",
+    "proof_quality": "low",
+    "legal_risk_flag": false
+  },
+  {
+    "id": 2,
+    "name": "Олег Михальский",
+    "activity_date": "2023-2025 window (document claim)",
+    "activity_proof_url": "https://talari.ru/investors/",
+    "proof_quality": "low",
+    "legal_risk_flag": false
+  },
+  {
+    "id": 46,
+    "name": "Александр Горный",
+    "activity_date": "2023-2025 window (document claim)",
+    "activity_proof_url": "https://franchcamp.ru/",
+    "proof_quality": "low",
+    "legal_risk_flag": false
+  },
+  {
+    "id": 42,
+    "name": "Алексей Кислун",
+    "activity_date": "2025 (from source note)",
+    "activity_proof_url": "https://rb.ru/",
+    "proof_quality": "high",
+    "legal_risk_flag": false
+  },
+  {
+    "id": 6,
+    "name": "Николай Шестаков",
+    "activity_date": "2023-2025 window (document claim)",
+    "activity_proof_url": "https://talari.ru/investors/",
+    "proof_quality": "low",
+    "legal_risk_flag": false
+  },
+  {
+    "id": 14,
+    "name": "Игорь Калошин",
+    "activity_date": "2023-2025 window (document claim)",
+    "activity_proof_url": "https://talari.ru/investors/",
+    "proof_quality": "low",
+    "legal_risk_flag": false
+  },
+  {
+    "id": 15,
+    "name": "Сергей Грибов",
+    "activity_date": "2023-2025 window (document claim)",
+    "activity_proof_url": "https://talari.ru/investors/",
+    "proof_quality": "low",
+    "legal_risk_flag": false
+  },
+  {
+    "id": 16,
+    "name": "Станислав Богатюк",
+    "activity_date": "2023-2025 window (document claim)",
+    "activity_proof_url": "https://talari.ru/investors/",
+    "proof_quality": "low",
+    "legal_risk_flag": false
+  },
+  {
+    "id": 18,
+    "name": "Фёдор Голубев",
+    "activity_date": "2023-2025 window (document claim)",
+    "activity_proof_url": "https://talari.ru/investors/",
+    "proof_quality": "low",
+    "legal_risk_flag": false
+  },
+  {
+    "id": 31,
+    "name": "Александр Глебов",
+    "activity_date": "2024 (from source note)",
+    "activity_proof_url": "https://rb.ru/",
+    "proof_quality": "high",
+    "legal_risk_flag": false
+  },
+  {
+    "id": 49,
+    "name": "Владимир Дорохов",
+    "activity_date": "2023-2025 window (document claim)",
+    "activity_proof_url": "https://franchcamp.ru/",
+    "proof_quality": "low",
+    "legal_risk_flag": false
+  },
+  {
+    "id": 48,
+    "name": "Андрей Плахотнюк",
+    "activity_date": "2023-2025 window (document claim)",
+    "activity_proof_url": "https://franchcamp.ru/",
+    "proof_quality": "low",
+    "legal_risk_flag": false
+  },
+  {
+    "id": 3,
+    "name": "Олег Евсеенков",
+    "activity_date": "2023-2025 window (document claim)",
+    "activity_proof_url": "https://talari.ru/investors/",
+    "proof_quality": "low",
+    "legal_risk_flag": false
+  },
+  {
+    "id": 45,
+    "name": "Илья Ивахин",
+    "activity_date": "2023-2025 window (document claim)",
+    "activity_proof_url": "https://franchcamp.ru/",
+    "proof_quality": "low",
+    "legal_risk_flag": false
+  },
+  {
+    "id": 9,
+    "name": "Ваган Мартиросян",
+    "activity_date": "2023-2025 window (document claim)",
+    "activity_proof_url": "https://talari.ru/investors/",
+    "proof_quality": "low",
+    "legal_risk_flag": false
+  },
+  {
+    "id": 17,
+    "name": "Тигран Назаретян",
+    "activity_date": "2023-2025 window (document claim)",
+    "activity_proof_url": "https://talari.ru/investors/",
+    "proof_quality": "low",
+    "legal_risk_flag": false
+  },
+  {
+    "id": 1,
+    "name": "Сергей Дашков",
+    "activity_date": "2024-12-25 (Kommersant baseline)",
+    "activity_proof_url": "https://www.kommersant.ru/doc/7395727",
+    "proof_quality": "low",
+    "legal_risk_flag": true
+  }
+]

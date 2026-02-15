@@ -1,0 +1,752 @@
+[
+  {
+    "id": 28,
+    "name": "Амбарцум Амаякян",
+    "geo": "Россия",
+    "thesis_tags": "FoodTech/Restaurant Tech ангел",
+    "check_range": "≈ $520 k",
+    "source_type": "media_high",
+    "source_link": "https://rb.ru/",
+    "contact_channels": {
+      "email": "",
+      "telegram": "",
+      "social": "LinkedIn"
+    },
+    "notes": "Дает крупные чеки в FoodTech, знаком с онлайнобразованием; может помочь Credo OS в монетизации ресторанных AIпроектов."
+  },
+  {
+    "id": 41,
+    "name": "Алексей Перельман",
+    "geo": "Россия",
+    "thesis_tags": "LegalTech ангел",
+    "check_range": "$1 m (2021) – доп. выкуп доли 2024",
+    "source_type": "media_high",
+    "source_link": "https://rb.ru/",
+    "contact_channels": {
+      "email": "",
+      "telegram": "",
+      "social": "LinkedIn"
+    },
+    "notes": "Юристинвестор, вкладывает в LegalTech; релевантен для комплаенсфункций Credo OS."
+  },
+  {
+    "id": 20,
+    "name": "Олег Чельцов",
+    "geo": "США/Франция",
+    "thesis_tags": "IT/SaaS/Geoservices ангел",
+    "check_range": "$100 k–2.5 M",
+    "source_type": "media_high",
+    "source_link": "https://rb.ru/data/oleg-cheltsov/",
+    "contact_channels": {
+      "email": "",
+      "telegram": "",
+      "social": "LinkedIn"
+    },
+    "notes": "Предлагает крупные чеки и опыт масштабирования SaaS."
+  },
+  {
+    "id": 29,
+    "name": "Алексей Блохин",
+    "geo": "Россия",
+    "thesis_tags": "AI/EdTech ангел",
+    "check_range": "≈ ₽40 млн (~$440 k)",
+    "source_type": "media_high",
+    "source_link": "https://rb.ru/",
+    "contact_channels": {
+      "email": "",
+      "telegram": "",
+      "social": "LinkedIn"
+    },
+    "notes": "Активно инвестирует в AIобразование; может стать технологическим ментором."
+  },
+  {
+    "id": 36,
+    "name": "Антон Илюшин",
+    "geo": "Россия",
+    "thesis_tags": "WasteTech/Green Tech ангел",
+    "check_range": "≈ ₽24 млн (~$260 k)",
+    "source_type": "media_high",
+    "source_link": "https://rb.ru/",
+    "contact_channels": {
+      "email": "",
+      "telegram": "",
+      "social": "LinkedIn"
+    },
+    "notes": "Молодой ангел, инвестирует в экологические сервисы; может заинтересоваться AIоптимизацией отходов Credo OS."
+  },
+  {
+    "id": 39,
+    "name": "Сергей Белих",
+    "geo": "Россия",
+    "thesis_tags": "Media/AI ангел",
+    "check_range": "≈ ₽?? (оценка $100 k+)",
+    "source_type": "media_high",
+    "source_link": "https://rb.ru/",
+    "contact_channels": {
+      "email": "",
+      "telegram": "",
+      "social": "LinkedIn"
+    },
+    "notes": "Вкладывается в media AI; интересен для Credo OS по контентуправлению."
+  },
+  {
+    "id": 27,
+    "name": "Иван Елисеев",
+    "geo": "Россия",
+    "thesis_tags": "GameDev ангел",
+    "check_range": "≈ ₽12 млн (~$130 k)",
+    "source_type": "media_high",
+    "source_link": "https://rb.ru/",
+    "contact_channels": {
+      "email": "",
+      "telegram": "",
+      "social": ""
+    },
+    "notes": "Примеры инвестиций в гейминдустрию; интересна его готовность финансировать AIигры."
+  },
+  {
+    "id": 35,
+    "name": "Евгений Копыркин",
+    "geo": "Россия",
+    "thesis_tags": "Industrial/Robotics ангел",
+    "check_range": "$872 k",
+    "source_type": "media_high",
+    "source_link": "https://rb.ru/",
+    "contact_channels": {
+      "email": "",
+      "telegram": "",
+      "social": "LinkedIn"
+    },
+    "notes": "Интересуется робототехникой; может поддержать Credo OS в hard & roboticsсегментах."
+  },
+  {
+    "id": 38,
+    "name": "Анна Бачина",
+    "geo": "Россия",
+    "thesis_tags": "FoodTech/HoReCa ангел",
+    "check_range": "$1.8 M",
+    "source_type": "media_high",
+    "source_link": "https://rb.ru/",
+    "contact_channels": {
+      "email": "",
+      "telegram": "",
+      "social": "LinkedIn"
+    },
+    "notes": "Ориентируется на потребительский рынок; может поддержать B2Cнаправление Credo OS."
+  },
+  {
+    "id": 12,
+    "name": "Павел Черкашин",
+    "geo": "США / Россия",
+    "thesis_tags": "IT/FinTech/AI/Space ангел",
+    "check_range": "≈ $1 M",
+    "source_type": "directory_low",
+    "source_link": "https://talari.ru/investors/",
+    "contact_channels": {
+      "email": "",
+      "telegram": "",
+      "social": "LinkedIn"
+    },
+    "notes": "Венчурный инвестор с международным опытом; может привести серьёзных партнёров."
+  },
+  {
+    "id": 22,
+    "name": "Виктор Кох",
+    "geo": "США/Китай",
+    "thesis_tags": "SaaS/Enterprise Software ангел",
+    "check_range": "$0.5–2.5 M",
+    "source_type": "directory_low",
+    "source_link": "https://talari.ru/investors/",
+    "contact_channels": {
+      "email": "",
+      "telegram": "",
+      "social": "LinkedIn"
+    },
+    "notes": "Международный опыт и крупные чеки; поможет в масштабировании SaaSкомпонентов Credo OS."
+  },
+  {
+    "id": 37,
+    "name": "Илья Галаев",
+    "geo": "Россия",
+    "thesis_tags": "Cybersecurity ангел",
+    "check_range": "≈ ₽12 млн (~$130 k)",
+    "source_type": "media_high",
+    "source_link": "https://rb.ru/",
+    "contact_channels": {
+      "email": "",
+      "telegram": "",
+      "social": "LinkedIn"
+    },
+    "notes": "Заинтересован в cybersecurity; Credo OS может использовать его контакты для безопасности."
+  },
+  {
+    "id": 5,
+    "name": "Ренат Батыров",
+    "geo": "Россия",
+    "thesis_tags": "IT/Web3 ангел",
+    "check_range": "$0.5–5 M",
+    "source_type": "directory_low",
+    "source_link": "https://talari.ru/investors/",
+    "contact_channels": {
+      "email": "через Telegramканал Syndicate",
+      "telegram": "Telegramканал",
+      "social": "LinkedIn / AngelsDeck"
+    },
+    "notes": "Опытный синдикатор, может привлечь крупных соинвесторов."
+  },
+  {
+    "id": 50,
+    "name": "Альберт Караватка",
+    "geo": "Россия",
+    "thesis_tags": "Web3/AI ангел",
+    "check_range": "≈ $10–50 k",
+    "source_type": "media_high",
+    "source_link": "https://rb.ru/",
+    "contact_channels": {
+      "email": "",
+      "telegram": "",
+      "social": "LinkedIn"
+    },
+    "notes": "Активно развивает Web3/AIсообщество, может помочь Credo OS с краудкампаниями."
+  },
+  {
+    "id": 10,
+    "name": "Алексей Горячев",
+    "geo": "Россия, Москва",
+    "thesis_tags": "FinTech/AR/VR/MedTech ангел",
+    "check_range": "≈ $300 k",
+    "source_type": "directory_low",
+    "source_link": "https://talari.ru/investors/",
+    "contact_channels": {
+      "email": "alexeygoryachev@icloud.com",
+      "telegram": "",
+      "social": "LinkedIn"
+    },
+    "notes": "Объединяет опыт инвестиционного банкинга и венчурных сделок; может структурировать финансирование для Credo OS."
+  },
+  {
+    "id": 25,
+    "name": "Оксана Сорокина",
+    "geo": "Россия",
+    "thesis_tags": "EdTech/Platform ангел",
+    "check_range": "≈ ₽12.5 млн (около $140 k)",
+    "source_type": "media_high",
+    "source_link": "https://rb.ru/",
+    "contact_channels": {
+      "email": "",
+      "telegram": "",
+      "social": ""
+    },
+    "notes": "Активно инвестирует в EdTech; первый раунд 2024 года, открыта к публичному обсуждению."
+  },
+  {
+    "id": 43,
+    "name": "Ринат Салихов",
+    "geo": "Россия",
+    "thesis_tags": "FoodTech/Transport ангел",
+    "check_range": "≈ $100 k–500 k",
+    "source_type": "media_high",
+    "source_link": "https://rb.ru/",
+    "contact_channels": {
+      "email": "",
+      "telegram": "",
+      "social": "LinkedIn"
+    },
+    "notes": "Инвестирует в фудтех и логистику; может поддержать инфраструктурный блок Credo OS."
+  },
+  {
+    "id": 24,
+    "name": "Андрей Резинкин",
+    "geo": "Россия",
+    "thesis_tags": "AI/HRTech/EdTech/B2B SaaS ангел",
+    "check_range": "$20–50 k",
+    "source_type": "directory_medium",
+    "source_link": "https://moneyforstartup.com/",
+    "contact_channels": {
+      "email": "moneyforstartup@gmail.com",
+      "telegram": "@svetale58 (ассистент)",
+      "social": ""
+    },
+    "notes": "Активно инвестирует в AI и HR Tech; открыт для новых проектов и публикует контакты."
+  },
+  {
+    "id": 32,
+    "name": "Андрей Липатов",
+    "geo": "Россия",
+    "thesis_tags": "AdTech/AI ангел",
+    "check_range": "≈ $1 млн",
+    "source_type": "media_high",
+    "source_link": "https://rb.ru/",
+    "contact_channels": {
+      "email": "",
+      "telegram": "",
+      "social": "LinkedIn"
+    },
+    "notes": "Крупный чек в AIмаркетинг; может помочь с монетизацией контента."
+  },
+  {
+    "id": 33,
+    "name": "Максим Горбачёв",
+    "geo": "Россия",
+    "thesis_tags": "AdTech ангел",
+    "check_range": "≈ $1 млн",
+    "source_type": "media_high",
+    "source_link": "https://rb.ru/",
+    "contact_channels": {
+      "email": "",
+      "telegram": "",
+      "social": "LinkedIn"
+    },
+    "notes": "Управленческий опыт и интерес к AIрекламе; полезен для бизнеса Credo OS."
+  },
+  {
+    "id": 44,
+    "name": "Альберт Алиев",
+    "geo": "Россия",
+    "thesis_tags": "AI/Web3/Various angel",
+    "check_range": "н/д (делает индивидуальные чеки на краудплатформе)",
+    "source_type": "media_high",
+    "source_link": "https://rb.ru/",
+    "contact_channels": {
+      "email": "",
+      "telegram": "",
+      "social": "LinkedIn"
+    },
+    "notes": "Запускает краудраунды и лично инвестирует в Web3/AI; может предложить площадку для preseed Credo OS."
+  },
+  {
+    "id": 8,
+    "name": "Геворк Саркисян",
+    "geo": "США (Даллас)",
+    "thesis_tags": "IT ангел",
+    "check_range": "≈ $300 k",
+    "source_type": "directory_low",
+    "source_link": "https://talari.ru/investors/",
+    "contact_channels": {
+      "email": "",
+      "telegram": "",
+      "social": "LinkedIn"
+    },
+    "notes": "Носит ярко выраженный практический опыт запуска развлекательных проектов — релевантно для пользовательского опыта Credo OS."
+  },
+  {
+    "id": 21,
+    "name": "Оскар Хартманн",
+    "geo": "Германия/Россия",
+    "thesis_tags": "ecommerce/Marketplace ангел",
+    "check_range": "≈ $500 k",
+    "source_type": "directory_low",
+    "source_link": "https://talari.ru/investors/",
+    "contact_channels": {
+      "email": "",
+      "telegram": "Telegram-канал HartmannHoldings",
+      "social": "LinkedIn"
+    },
+    "notes": "Имеет большой опыт построения маркетплейсов и может помочь монетизации Credo OS."
+  },
+  {
+    "id": 26,
+    "name": "Леонид Довбенко",
+    "geo": "Россия, Москва",
+    "thesis_tags": "FoodTech/Automation ангел",
+    "check_range": "не раскрыт (сделка – 30% доля)",
+    "source_type": "media_high",
+    "source_link": "https://rb.ru/",
+    "contact_channels": {
+      "email": "",
+      "telegram": "",
+      "social": "LinkedIn"
+    },
+    "notes": "Опытный фудтех предприниматель, понимает B2B сервисы."
+  },
+  {
+    "id": 30,
+    "name": "Сергей Лудин",
+    "geo": "Россия",
+    "thesis_tags": "Ecommerce/Marketplace ангел",
+    "check_range": "≈ ₽30 млн (оцениваемый чек)",
+    "source_type": "media_high",
+    "source_link": "https://rb.ru/",
+    "contact_channels": {
+      "email": "",
+      "telegram": "",
+      "social": "LinkedIn"
+    },
+    "notes": "Инвестирует в lifestyleecommerce, интересуется технологиями персонализации; Credo OS может использовать его контакты для AIкоммерции."
+  },
+  {
+    "id": 34,
+    "name": "Сергей Солонин",
+    "geo": "Россия",
+    "thesis_tags": "FinTech ангел",
+    "check_range": "н/д (чаще $100 k+)",
+    "source_type": "media_high",
+    "source_link": "https://rb.ru/",
+    "contact_channels": {
+      "email": "",
+      "telegram": "",
+      "social": "LinkedIn"
+    },
+    "notes": "Опытный FinTechпредприниматель, готов инвестировать в lowcode/AI решения."
+  },
+  {
+    "id": 4,
+    "name": "Александр Деребенец",
+    "geo": "Россия, Нижний Новгород",
+    "thesis_tags": "SaaS/FinTech/AdTech/DeepTech",
+    "check_range": "$10–50 k",
+    "source_type": "directory_low",
+    "source_link": "https://talari.ru/investors/",
+    "contact_channels": {
+      "email": "derebenets.al@gmail.com",
+      "telegram": "",
+      "social": "LinkedIn (страница InvestDivision)"
+    },
+    "notes": "Поможет Credo OS опытом SaaS и созданием венчурных команд."
+  },
+  {
+    "id": 11,
+    "name": "Елена Колмакова",
+    "geo": "Россия",
+    "thesis_tags": "AdTech/EdTech/SaaS/AI/Web3 ангел",
+    "check_range": "$20–50 k",
+    "source_type": "directory_low",
+    "source_link": "https://talari.ru/investors/",
+    "contact_channels": {
+      "email": "",
+      "telegram": "Телеграм (@kolmelen?)",
+      "social": "LinkedIn"
+    },
+    "notes": "Молодой инвестор в Web3 и EdTech — релевантно для AI/OSпроектов."
+  },
+  {
+    "id": 13,
+    "name": "Александр Чачава",
+    "geo": "Кипр/Россия",
+    "thesis_tags": "IT ангел",
+    "check_range": "н/д (обычно $200 k+)",
+    "source_type": "media_high",
+    "source_link": "https://www.forbes.ru/profile/aleksandr-chachava",
+    "contact_channels": {
+      "email": "",
+      "telegram": "",
+      "social": "LinkedIn"
+    },
+    "notes": "Обширный трекрекорд в IT; полезен для международных раундов."
+  },
+  {
+    "id": 19,
+    "name": "Эдуард Фияксель",
+    "geo": "Россия",
+    "thesis_tags": "IT/Marketing ангел",
+    "check_range": "$100–200 k",
+    "source_type": "directory_low",
+    "source_link": "https://talari.ru/investors/",
+    "contact_channels": {
+      "email": "",
+      "telegram": "",
+      "social": "Facebook/LinkedIn"
+    },
+    "notes": "Образовательный лидер с широкими связями; может привлечь исследователей и молодых инвесторов."
+  },
+  {
+    "id": 23,
+    "name": "Пётр Жуков",
+    "geo": "Россия, Москва",
+    "thesis_tags": "FMCG/Food/IT/Sport Tech ангел",
+    "check_range": "$25–100 k",
+    "source_type": "directory_low",
+    "source_link": "https://talari.ru/investors/",
+    "contact_channels": {
+      "email": "",
+      "telegram": "",
+      "social": "Facebook/LinkedIn"
+    },
+    "notes": "Комбинирует опыт спорта и IT – может привлечь фановую аудиторию для Credo OS."
+  },
+  {
+    "id": 40,
+    "name": "Александр Калинин",
+    "geo": "Россия",
+    "thesis_tags": "IT/Security ангел",
+    "check_range": "н/д",
+    "source_type": "media_high",
+    "source_link": "https://rb.ru/",
+    "contact_channels": {
+      "email": "",
+      "telegram": "",
+      "social": "LinkedIn"
+    },
+    "notes": "Опытный топменеджер ИТиндустрии; полезен для secureкомпонент Credo OS."
+  },
+  {
+    "id": 7,
+    "name": "Юлий Зегельман",
+    "geo": "США (СанФранциско)",
+    "thesis_tags": "AI/ML/Enterprise SaaS ангел",
+    "check_range": "$20–50 k",
+    "source_type": "directory_low",
+    "source_link": "https://talari.ru/investors/",
+    "contact_channels": {
+      "email": "",
+      "telegram": "",
+      "social": "LinkedIn"
+    },
+    "notes": "Зарубежный инвестор с опытом scaling SaaS — полезен для выхода Credo OS на международный рынок."
+  },
+  {
+    "id": 47,
+    "name": "Андрей Кравцов",
+    "geo": "Россия",
+    "thesis_tags": "EdTech/Robotics ангел",
+    "check_range": "≈ $20–100 k",
+    "source_type": "community_low",
+    "source_link": "https://franchcamp.ru/",
+    "contact_channels": {
+      "email": "",
+      "telegram": "",
+      "social": "Telegram канал"
+    },
+    "notes": "Опыт в робототехнике и образовании; может поддержать технические компоненты Credo OS."
+  },
+  {
+    "id": 2,
+    "name": "Олег Михальский",
+    "geo": "США (СанФранциско)",
+    "thesis_tags": "FinTech/AI",
+    "check_range": "$20–30 k",
+    "source_type": "directory_low",
+    "source_link": "https://talari.ru/investors/",
+    "contact_channels": {
+      "email": "через Fulgur.Ventures",
+      "telegram": "",
+      "social": "LinkedIn (на странице Fulgur Ventures)"
+    },
+    "notes": "Международный FinTechангел с экспертизой в продуктовых стратегиях; полезен для Credo OS как ментор и контакт на западном рынке."
+  },
+  {
+    "id": 46,
+    "name": "Александр Горный",
+    "geo": "Россия",
+    "thesis_tags": "AI/EdTech ангел",
+    "check_range": "Активно освещает стартапы в Telegram, участвует в инвестиционных сделках",
+    "source_type": "community_low",
+    "source_link": "https://franchcamp.ru/",
+    "contact_channels": {
+      "email": "",
+      "telegram": "Telegram @startup_101 (канал)",
+      "social": "LinkedIn"
+    },
+    "notes": "Медиалидер в AI; может помочь Credo OS с продвижением и поиском инвесторов."
+  },
+  {
+    "id": 42,
+    "name": "Алексей Кислун",
+    "geo": "Россия",
+    "thesis_tags": "FoodTech ангел",
+    "check_range": "н/д (частный капитал)",
+    "source_type": "media_high",
+    "source_link": "https://rb.ru/",
+    "contact_channels": {
+      "email": "",
+      "telegram": "",
+      "social": "LinkedIn"
+    },
+    "notes": "Сохраняет крупную долю и инвестирует в foodtech; полезен для Credo OS при выходе на рынок готовой еды."
+  },
+  {
+    "id": 6,
+    "name": "Николай Шестаков",
+    "geo": "Россия, Москва",
+    "thesis_tags": "IT/Media ангел",
+    "check_range": "$50 k",
+    "source_type": "directory_low",
+    "source_link": "https://talari.ru/investors/",
+    "contact_channels": {
+      "email": "",
+      "telegram": "",
+      "social": "Facebook"
+    },
+    "notes": "Руководит медиакомпанией и имеет опыт digitalмаркетинга — полезен для маркетинговой части Credo OS."
+  },
+  {
+    "id": 14,
+    "name": "Игорь Калошин",
+    "geo": "Россия",
+    "thesis_tags": "IT/Web3 ангел",
+    "check_range": "$30 k (лично)",
+    "source_type": "directory_low",
+    "source_link": "https://talari.ru/investors/",
+    "contact_channels": {
+      "email": "",
+      "telegram": "",
+      "social": "LinkedIn"
+    },
+    "notes": "Представитель крупного ангельского клуба; может помочь с синдикатом и экспертизой AI."
+  },
+  {
+    "id": 15,
+    "name": "Сергей Грибов",
+    "geo": "США/Израиль",
+    "thesis_tags": "IT/Software/Cybersecurity/FinTech ангел",
+    "check_range": "≈ $60 k",
+    "source_type": "directory_low",
+    "source_link": "https://talari.ru/investors/",
+    "contact_channels": {
+      "email": "",
+      "telegram": "",
+      "social": "LinkedIn"
+    },
+    "notes": "Эксперт в безопасности — критично для OSплатформ."
+  },
+  {
+    "id": 16,
+    "name": "Станислав Богатюк",
+    "geo": "Россия, Москва",
+    "thesis_tags": "MedTech/Healthcare ангел",
+    "check_range": "3–5 млн руб. (~$40–60 k)",
+    "source_type": "directory_low",
+    "source_link": "https://talari.ru/investors/",
+    "contact_channels": {
+      "email": "s.bogatyuk@gmail.com",
+      "telegram": "",
+      "social": "LinkedIn"
+    },
+    "notes": "Медицинский ангел, может помочь Credo OS в здоровьеориентированных приложениях."
+  },
+  {
+    "id": 18,
+    "name": "Фёдор Голубев",
+    "geo": "Россия",
+    "thesis_tags": "HR/Security ангел",
+    "check_range": "3–5 млн руб. ($40–60 k)",
+    "source_type": "directory_low",
+    "source_link": "https://talari.ru/investors/",
+    "contact_channels": {
+      "email": "",
+      "telegram": "",
+      "social": "VK/LinkedIn"
+    },
+    "notes": "Обладает опытом в recruitment tech, полезном для команд Credo OS."
+  },
+  {
+    "id": 31,
+    "name": "Александр Глебов",
+    "geo": "Россия",
+    "thesis_tags": "FoodTech ангел",
+    "check_range": "≈ ₽?? (оценка 200 млн руб.)",
+    "source_type": "media_high",
+    "source_link": "https://rb.ru/",
+    "contact_channels": {
+      "email": "",
+      "telegram": "",
+      "social": "LinkedIn"
+    },
+    "notes": "Розничный предприниматель, инвестирует в fooddelivery; релевантен для стратегии Credo OS на рынке еды."
+  },
+  {
+    "id": 49,
+    "name": "Владимир Дорохов",
+    "geo": "Россия",
+    "thesis_tags": "Logistics/Tech ангел",
+    "check_range": "Участвует в советах директоров, консультирует стартапы",
+    "source_type": "community_low",
+    "source_link": "https://franchcamp.ru/",
+    "contact_channels": {
+      "email": "",
+      "telegram": "",
+      "social": "LinkedIn"
+    },
+    "notes": "Опыт в логистике и корпоративном управлении; релевантен для supplychain сервисов Credo OS."
+  },
+  {
+    "id": 48,
+    "name": "Андрей Плахотнюк",
+    "geo": "Россия",
+    "thesis_tags": "Multisector angel",
+    "check_range": "≈ $10–50 k",
+    "source_type": "community_low",
+    "source_link": "https://franchcamp.ru/",
+    "contact_channels": {
+      "email": "",
+      "telegram": "Telegram @dnkinvestor",
+      "social": "LinkedIn"
+    },
+    "notes": "Активный в Telegram – потенциальный канал для привлечения ранних инвестиций."
+  },
+  {
+    "id": 3,
+    "name": "Олег Евсеенков",
+    "geo": "Россия, Москва",
+    "thesis_tags": "Industrial/IT ангел",
+    "check_range": "≈ $20 k",
+    "source_type": "directory_low",
+    "source_link": "https://talari.ru/investors/",
+    "contact_channels": {
+      "email": "",
+      "telegram": "",
+      "social": "Facebook/LinkedIn"
+    },
+    "notes": "Имеет опыт в энергетике и промышленности; может поддержать Credo OS в hardware OS проектах."
+  },
+  {
+    "id": 45,
+    "name": "Илья Ивахин",
+    "geo": "Россия",
+    "thesis_tags": "Multisector angel",
+    "check_range": "Участвует в ангельских клубах, инвестирует собственные средства",
+    "source_type": "community_low",
+    "source_link": "https://franchcamp.ru/",
+    "contact_channels": {
+      "email": "",
+      "telegram": "",
+      "social": "LinkedIn / Telegram"
+    },
+    "notes": "Активный в сообществах, может предложить клубную синдикацию Credo OS."
+  },
+  {
+    "id": 9,
+    "name": "Ваган Мартиросян",
+    "geo": "Канада/Франция",
+    "thesis_tags": "AR/VR ангел",
+    "check_range": "не раскрыт; экспертиза + инвестиции",
+    "source_type": "directory_low",
+    "source_link": "https://talari.ru/investors/",
+    "contact_channels": {
+      "email": "",
+      "telegram": "",
+      "social": "LinkedIn / Facebook"
+    },
+    "notes": "Может помочь Credo OS в 3D и XRкомпонентах (например, интерфейсы)."
+  },
+  {
+    "id": 17,
+    "name": "Тигран Назаретян",
+    "geo": "Россия",
+    "thesis_tags": "Multisector angel",
+    "check_range": "н/д (обычно $20–50 k)",
+    "source_type": "directory_low",
+    "source_link": "https://talari.ru/investors/",
+    "contact_channels": {
+      "email": "",
+      "telegram": "",
+      "social": "Facebook/LinkedIn"
+    },
+    "notes": "Опыт в различных секторах и синдикациях; может привлечь технологические команды."
+  },
+  {
+    "id": 1,
+    "name": "Сергей Дашков",
+    "geo": "Россия, Москва",
+    "thesis_tags": "AI/FinTech/Web3; бизнесангел",
+    "check_range": "$80 k+ (до $5 млн в синдикатах)",
+    "source_type": "directory_low",
+    "source_link": "https://www.kommersant.ru/doc/7395727",
+    "contact_channels": {
+      "email": "inbox@jjvc.info",
+      "telegram": "канал Syndicate (многотысячный ангельский чат)",
+      "social": "LinkedIn (страница Joint Journey)"
+    },
+    "notes": "Активный ангел, инвестирует в AI/BigData и готов участвовать в earlystage стартапах; может помочь Credo OS с трекшном и синдикатами."
+  }
+]

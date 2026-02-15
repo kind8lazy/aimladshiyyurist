@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ЮрШтаб AI | Младший Юрист AI 24/7</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <aside class="sidebar">
+        <div class="brand">
+          <span class="brand-kicker">Master-brand</span>
+          <h1>ЮрШтаб AI</h1>
+          <p>Платформа legal operations для SMB</p>
+          <small class="brand-architecture">Продуктовая персона: Младший Юрист AI 24/7</small>
+        </div>
+
+        <nav class="menu">
+          <button class="menu-item is-active" data-target="overview">Обзор</button>
+          <button class="menu-item" data-target="intake">Новый кейс</button>
+          <button class="menu-item" data-target="board">Канбан</button>
+          <button class="menu-item" data-target="reports">Отчеты</button>
+        </nav>
+
+        <section class="auth-card" id="auth-card">
+          <h2>Доступ</h2>
+          <div class="auth-switch">
+            <button id="show-login" type="button" class="action-btn">Вход</button>
+            <button id="show-register" type="button" class="action-btn">Регистрация</button>
+          </div>
+          <form id="login-form" class="auth-form">
+            <input id="login-email" type="email" placeholder="E-mail" required />
+            <input id="login-password" type="password" placeholder="Пароль" required />
+            <button type="submit" class="action-btn">Войти</button>
+          </form>
+          <form id="register-form" class="auth-form hidden">
+            <input id="register-name" type="text" placeholder="Имя" required />
+            <input id="register-email" type="email" placeholder="E-mail" required />
+            <input id="register-password" type="password" placeholder="Пароль (минимум 8 символов)" required minlength="8" />
+            <button type="submit" class="action-btn">Зарегистрироваться</button>
+          </form>
+          <div id="auth-session" class="auth-session hidden">
+            <p id="auth-user" class="auth-user"></p>
+            <button id="logout-btn" class="action-btn">Выйти</button>
+          </div>
+          <p id="auth-status" class="hint">Выполни вход для работы с кейсами и расшифровкой.</p>
+        </section>
+
+        <section class="quick-actions">
+          <h2>Быстрые действия</h2>
+          <button id="seed-demo" class="action-btn">Загрузить демо-данные</button>
+          <button id="clear-data" class="action-btn ghost">Очистить данные</button>
+        </section>
+      </aside>
+
+      <main class="main">
+        <header class="topbar">
+          <div>
+            <h2>Юридический контрольный центр</h2>
+            <p>ЮрШтаб AI + Младший Юрист AI 24/7: снимаем рутину, держим сроки и память кейса под контролем.</p>
+          </div>
+          <div class="search-wrap">
+            <input id="search-input" type="search" placeholder="Поиск: компания, риск, тег" />
+            <select id="status-filter">
+              <option value="ALL">Все статусы</option>
+              <option value="NEW">Новый</option>
+              <option value="IN_REVIEW">В работе</option>
+              <option value="BLOCKED">Стоп-фактор</option>
+              <option value="READY">Готов к запуску</option>
+              <option value="CLOSED">Закрыт</option>
+            </select>
+          </div>
+        </header>
+
+        <section id="assistant-dock" class="panel assistant-dock">
+          <div class="assistant-head">
+            <div class="assistant-title-wrap">
+              <span class="assistant-avatar" aria-hidden="true">Ю</span>
+              <div>
+                <h3>Младший Юрист AI 24/7</h3>
+                <span class="assistant-role-label">Ассистент: Младший Юрист AI 24/7</span>
+                <p>Онлайн-помощник по кейсам: помнит контекст, собирает рутину и предлагает план действий.</p>
+              </div>
+            </div>
+            <span id="assistant-presence" class="assistant-presence is-online">На связи</span>
+          </div>
+
+          <div id="assistant-context" class="assistant-context">
+            Контекст: войди в систему и выбери кейс, чтобы помощник работал по материалам дела.
+          </div>
+
+          <div id="assistant-chat" class="assistant-chat"></div>
+
+          <div id="assistant-quick" class="assistant-quick">
+            <button type="button" class="action-btn" data-prompt="Дай короткое резюме кейса для собственника.">Резюме для собственника</button>
+            <button type="button" class="action-btn" data-prompt="Выдели ближайшие сроки и обязательства.">Сроки и обязательства</button>
+            <button type="button" class="action-btn" data-prompt="Собери план действий на 24/72 часа.">План 24/72 часа</button>
+            <button type="button" class="action-btn" data-prompt="Покажи слабые места позиции и что усилить доказательствами.">Слабые места позиции</button>
+          </div>
+
+          <form id="assistant-form" class="assistant-form">
+            <input id="assistant-input" type="text" placeholder="Например: Запомни, что переговоры перенесли на 18:30" maxlength="600" />
+            <button type="submit" class="primary-btn">Спросить ассистента</button>
+          </form>
+
+          <p class="assistant-footnote">
+            Помощник не заменяет юриста и не формирует окончательное заключение, но ускоряет сбор фактов, приоритизацию и контроль сроков.
+          </p>
+        </section>
+
+        <section id="overview" class="tab-section is-active">
+          <div class="kpi-grid" id="kpi-grid"></div>
+
+          <div class="panel-row">
+            <section class="panel matters-panel">
+              <div class="panel-head">
+                <h3>Реестр кейсов</h3>
+                <span id="matter-count" class="badge"></span>
+              </div>
+              <div class="table-wrap">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Кейс</th>
+                      <th>Риск</th>
+                      <th>Статус</th>
+                      <th>Создан</th>
+                    </tr>
+                  </thead>
+                  <tbody id="matter-table-body"></tbody>
+                </table>
+              </div>
+            </section>
+
+            <section class="panel detail-panel">
+              <div class="panel-head">
+                <h3>Карточка кейса</h3>
+                <span id="selected-status" class="risk-chip">Нет</span>
+              </div>
+              <div id="case-details" class="case-details empty">
+                Выбери кейс, чтобы увидеть извлеченные риски, таймлайн и действия.
+              </div>
+            </section>
+          </div>
+        </section>
+
+        <section id="intake" class="tab-section">
+          <section class="panel">
+            <div class="panel-head">
+              <h3>Регистрация нового кейса</h3>
+              <p>Сделано по принципу “как iPhone”: минимум полей для старта, остальное в блоке “Дополнительно”.</p>
+            </div>
+            <form id="intake-form" class="intake-grid">
+              <p class="intake-quick-intro full-width">
+                Быстрый запуск: <strong>Компания</strong> + <strong>Что случилось</strong> + <strong>Материалы</strong> (если есть).
+              </p>
+
+              <label>
+                Компания
+                <input name="company" required placeholder="ООО СтройТех" />
+              </label>
+
+              <label class="full-width">
+                Что случилось? (основной контекст)
+                <textarea id="raw-text-input" name="rawText" rows="8" required placeholder="Опиши проблему простыми словами или вставь переписку/стенограмму. Пример: контрагент требует оплату до 20.02.2026, грозит претензией и арбитражем."></textarea>
+              </label>
+
+              <label class="full-width">
+                Материалы дела (аудио, видео, документы)
+                <input type="file" id="file-input" accept=".txt,.md,.csv,.json,.pdf,.doc,.docx,.rtf,.mp3,.wav,.m4a,.ogg,.mp4,.mov,.webm" multiple />
+              </label>
+              <p class="hint full-width">Поддерживаются: записи заседаний/звонков, переписка, договоры, акты, УПД, претензии. Большие аудио/видео сервер нарезает автоматически и расшифровывает по частям.</p>
+              <div class="full-width transcribe-row">
+                <button type="button" id="transcribe-audio" class="action-btn">Расшифровать запись ИИ</button>
+                <span id="transcribe-status" class="hint">Выбери аудио/видео файл и нажми кнопку.</span>
+              </div>
+              <div class="full-width transcribe-progress-wrap">
+                <div class="transcribe-progress-bar">
+                  <div id="transcribe-progress-fill" class="transcribe-progress-fill"></div>
+                </div>
+                <span id="transcribe-progress-text" class="hint">0%</span>
+              </div>
+
+              <details class="full-width advanced-fields">
+                <summary>Дополнительно (необязательно)</summary>
+                <div class="intake-advanced-grid">
+                  <label>
+                    Контактное лицо
+                    <input name="contact" placeholder="Иван Петров" />
+                  </label>
+
+                  <label>
+                    Сфера бизнеса
+                    <input name="industry" placeholder="Производство, логистика, торговля, стройка" />
+                  </label>
+
+                  <label>
+                    Тип источника
+                    <select name="sourceType">
+                      <option>Судебное заседание</option>
+                      <option>Переговоры с контрагентом</option>
+                      <option>Переписка</option>
+                      <option>Договор</option>
+                      <option>Комбинированный</option>
+                    </select>
+                  </label>
+
+                  <label>
+                    Краткое название кейса
+                    <input name="summary" placeholder="Срыв поставки и спор по неустойке" />
+                  </label>
+
+                  <label class="full-width">
+                    Краткий конспект записи
+                    <textarea id="meeting-notes-input" name="meetingNotes" rows="3" placeholder="Кто участвовал, о чем спор, какие сроки и требования озвучили"></textarea>
+                  </label>
+
+                  <label class="full-width">
+                    Рутинные источники и контекст
+                    <textarea name="routineContext" rows="3" placeholder="Например: 20 звонков за неделю, 3 заседания, переписка в почте и Telegram"></textarea>
+                  </label>
+                </div>
+              </details>
+
+              <label class="full-width disclaimer-check">
+                <input id="disclaimer-accepted" name="disclaimerAccepted" type="checkbox" required />
+                <span>Подтверждаю, что результат ИИ носит вспомогательный характер и не заменяет юридическое заключение. Финальные решения принимает ответственный юрист компании.</span>
+              </label>
+
+              <button type="submit" class="primary-btn">Создать кейс и проанализировать</button>
+            </form>
+          </section>
+        </section>
+
+        <section id="board" class="tab-section">
+          <section class="panel">
+            <div class="panel-head">
+              <h3>Канбан по этапам</h3>
+              <p>Перемещай кейсы между статусами для контроля legal-процесса</p>
+            </div>
+            <div id="kanban-board" class="kanban-board"></div>
+          </section>
+        </section>
+
+        <section id="reports" class="tab-section">
+          <section class="panel">
+            <div class="panel-head">
+              <h3>Управленческий юротчет</h3>
+              <p>Коротко для собственника: риски, сроки, что делаем в ближайшие 72 часа</p>
+            </div>
+            <div class="report-controls">
+              <select id="report-scope"></select>
+              <button id="generate-report" class="primary-btn">Сгенерировать</button>
+              <button id="download-report" class="action-btn">Скачать .md</button>
+            </div>
+            <pre id="report-preview" class="report-preview">Нажми «Сгенерировать», чтобы получить отчет.</pre>
+          </section>
+        </section>
+      </main>
+    </div>
+
+    <script src="./app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Content Strategist"
+  short_description: "Lead B2B content strategy and execution"
+  default_prompt: "Act as my B2B content strategist. Build a content plan tied to pipeline, create execution templates, assign owners, and define weekly review metrics."
