@@ -44,6 +44,7 @@ const els = {
   registerPassword: document.getElementById("register-password"),
   showLoginBtn: document.getElementById("show-login"),
   showRegisterBtn: document.getElementById("show-register"),
+  forgotPasswordBtn: document.getElementById("forgot-password-btn"),
   authSession: document.getElementById("auth-session"),
   authUser: document.getElementById("auth-user"),
   authStatus: document.getElementById("auth-status"),
@@ -124,6 +125,7 @@ function bindEvents() {
   els.logoutBtn.addEventListener("click", handleLogout);
   els.showLoginBtn.addEventListener("click", () => setAuthMode("login"));
   els.showRegisterBtn.addEventListener("click", () => setAuthMode("register"));
+  els.forgotPasswordBtn.addEventListener("click", handleForgotPasswordFlow);
 
   els.clearButton.addEventListener("click", () => {
     if (!state.user) {
@@ -365,6 +367,54 @@ async function handleRegisterSubmit(event) {
     renderAssistantDock();
   } catch (error) {
     setAuthStatus(`Ошибка регистрации: ${error.message}`, "error");
+  }
+}
+
+async function handleForgotPasswordFlow() {
+  const emailSeed = `${els.loginEmail.value || ""}`.trim().toLowerCase();
+  const email = window.prompt("Введите e-mail аккаунта для восстановления пароля:", emailSeed);
+  if (!email) {
+    return;
+  }
+
+  try {
+    const forgotPayload = await rawApiRequest("/api/auth/forgot-password", {
+      method: "POST",
+      body: {
+        email: email.trim().toLowerCase(),
+      },
+    });
+
+    const hint = forgotPayload.demoCode
+      ? `\n\nКод восстановления (demo): ${forgotPayload.demoCode}`
+      : "";
+    window.alert(`${forgotPayload.message || "Проверьте почту для кода восстановления."}${hint}`);
+
+    const code = window.prompt("Введите 6-значный код восстановления:");
+    if (!code) {
+      return;
+    }
+
+    const newPassword = window.prompt("Введите новый пароль (минимум 8 символов):");
+    if (!newPassword) {
+      return;
+    }
+
+    await rawApiRequest("/api/auth/reset-password", {
+      method: "POST",
+      body: {
+        email: email.trim().toLowerCase(),
+        code: code.trim(),
+        newPassword,
+      },
+    });
+
+    setAuthStatus("Пароль обновлен. Выполни вход с новым паролем.", "success");
+    els.loginEmail.value = email.trim().toLowerCase();
+    els.loginPassword.value = "";
+    setAuthMode("login");
+  } catch (error) {
+    setAuthStatus(`Восстановление не выполнено: ${error.message}`, "error");
   }
 }
 

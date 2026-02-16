@@ -128,6 +128,22 @@ body {
   gap: 8px;
 }
 
+.link-btn {
+  border: 0;
+  background: transparent;
+  color: #d8e5ee;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  font-size: 0.82rem;
+  padding: 0;
+  justify-self: start;
+  cursor: pointer;
+}
+
+.link-btn:hover {
+  color: #ffffff;
+}
+
 .auth-form input {
   border: 1px solid rgba(216, 229, 238, 0.35);
   border-radius: 8px;

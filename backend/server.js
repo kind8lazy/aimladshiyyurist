@@ -40,6 +40,7 @@ const mimeByExt = {
 };
 
 const sessions = new Map();
+const passwordResetCodes = new Map();
 const transcriptionJobs = new Map();
 const transcribeRateState = new Map();
 const assistantAttachmentTextCache = new Map();
@@ -129,6 +130,14 @@ async function handleApi(req, res, requestUrl) {
 
   if (req.method === "POST" && pathname === "/api/auth/register") {
     return register(req, res);
+  }
+
+  if (req.method === "POST" && pathname === "/api/auth/forgot-password") {
+    return forgotPassword(req, res);
+  }
+
+  if (req.method === "POST" && pathname === "/api/auth/reset-password") {
+    return resetPassword(req, res);
   }
 
   const user = authenticate(req);
@@ -846,6 +855,95 @@ async function register(req, res) {
   });
 }
 
+async function forgotPassword(req, res) {
+  let body;
+  try {
+    body = await parseJsonBody(req, { maxBytes: 1024 * 1024 });
+  } catch (error) {
+    if (error.code === "PAYLOAD_TOO_LARGE") {
+      return json(res, 413, { error: "Payload too large" });
+    }
+
+    return json(res, 400, { error: "Invalid JSON body" });
+  }
+
+  const email = `${body.email || ""}`.trim().toLowerCase();
+  if (!isValidEmail(email)) {
+    return json(res, 400, { error: "invalid email format" });
+  }
+
+  const user = db.users.find((item) => item.email.toLowerCase() === email);
+  if (!user) {
+    return json(res, 200, {
+      ok: true,
+      message: "Если e-mail зарегистрирован, код восстановления отправлен.",
+    });
+  }
+
+  const code = `${Math.floor(100000 + Math.random() * 900000)}`;
+  passwordResetCodes.set(email, {
+    code,
+    expiresAt: Date.now() + 15 * 60 * 1000,
+  });
+
+  return json(res, 200, {
+    ok: true,
+    message: "Код восстановления создан. Срок действия 15 минут.",
+    demoCode: code,
+  });
+}
+
+async function resetPassword(req, res) {
+  let body;
+  try {
+    body = await parseJsonBody(req, { maxBytes: 1024 * 1024 });
+  } catch (error) {
+    if (error.code === "PAYLOAD_TOO_LARGE") {
+      return json(res, 413, { error: "Payload too large" });
+    }
+
+    return json(res, 400, { error: "Invalid JSON body" });
+  }
+
+  const email = `${body.email || ""}`.trim().toLowerCase();
+  const code = `${body.code || ""}`.trim();
+  const newPassword = `${body.newPassword || ""}`;
+  if (!isValidEmail(email)) {
+    return json(res, 400, { error: "invalid email format" });
+  }
+  if (!code || !/^\d{6}$/.test(code)) {
+    return json(res, 400, { error: "invalid reset code" });
+  }
+  if (newPassword.length < 8) {
+    return json(res, 400, { error: "password must be at least 8 chars" });
+  }
+
+  const entry = passwordResetCodes.get(email);
+  if (!entry || entry.code !== code) {
+    return json(res, 400, { error: "invalid or expired reset code" });
+  }
+  if (entry.expiresAt < Date.now()) {
+    passwordResetCodes.delete(email);
+    return json(res, 400, { error: "invalid or expired reset code" });
+  }
+
+  const user = db.users.find((item) => item.email.toLowerCase() === email);
+  if (!user) {
+    return json(res, 404, { error: "user not found" });
+  }
+
+  user.passwordHash = crypto.createHash("sha256").update(newPassword).digest("hex");
+  user.updatedAt = nowIso();
+  await saveUsers(db.users);
+  passwordResetCodes.delete(email);
+  clearUserSessions(user.id);
+
+  return json(res, 200, {
+    ok: true,
+    message: "Пароль обновлен. Войди с новым паролем.",
+  });
+}
+
 function authenticate(req) {
   const authHeader = req.headers.authorization || "";
   if (!authHeader.toLowerCase().startsWith("bearer ")) {
@@ -859,6 +957,14 @@ function authenticate(req) {
   }
 
   return db.users.find((user) => user.id === session.userId) || null;
+}
+
+function clearUserSessions(userId) {
+  for (const [token, session] of sessions.entries()) {
+    if (session.userId === userId) {
+      sessions.delete(token);
+    }
+  }
 }
 
 async function createMatter(req, res, user) {
