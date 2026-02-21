@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ЮрХаб — AI-workspace для юристов | Все материалы дела в одном месте с AI-анализом</title>
+    <meta name="description" content="AI-workspace для юристов. Все материалы дела в одном месте, AI анализирует документы и находит риски, сроки по АПК РФ. Работайте в контексте, а не в хаосе.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #0ea5e9;
+            --text-dark: #1e293b;
+            --text-light: #64748b;
+            --bg-light: #f8fafc;
+            --bg-white: #ffffff;
+            --border: #e2e8f0;
+            --success: #10b981;
+            --danger: #ef4444;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: var(--bg-white);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .container-narrow {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: var(--bg-white);
+            border-bottom: 1px solid var(--border);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .header-cta {
+            display: flex;
+            gap: 15px;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+        }
+
+        .btn-secondary {
+            background: var(--bg-light);
+            color: var(--text-dark);
+            border: 2px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #f8fafc 0%, #e0f2fe 100%);
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 56px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            color: var(--text-dark);
+        }
+
+        .hero .subheadline {
+            font-size: 28px;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .hero .description {
+            font-size: 20px;
+            color: var(--text-light);
+            margin-bottom: 40px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* Section Styles */
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            font-size: 42px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 20px;
+            color: var(--text-dark);
+        }
+
+        .section-subtitle {
+            font-size: 20px;
+            text-align: center;
+            color: var(--text-light);
+            margin-bottom: 60px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Problem Statement */
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .problem-card {
+            background: var(--bg-white);
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            padding: 40px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .problem-card:hover {
+            border-color: var(--danger);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+        }
+
+        .problem-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .problem-card h3 {
+            font-size: 22px;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+        }
+
+        .problem-card p {
+            color: var(--text-light);
+            font-size: 16px;
+        }
+
+        /* Solution Workspace */
+        .solution-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .solution-card {
+            background: var(--bg-white);
+            border: 2px solid var(--primary);
+            border-radius: 12px;
+            padding: 40px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .solution-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 28px rgba(37, 99, 235, 0.2);
+        }
+
+        .solution-icon {
+            font-size: 56px;
+            margin-bottom: 20px;
+        }
+
+        .solution-card h3 {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+        }
+
+        .solution-card p {
+            color: var(--text-light);
+            font-size: 15px;
+        }
+
+        /* Comparison Table */
+        .comparison-section {
+            background: var(--bg-light);
+        }
+
+        .comparison-table {
+            background: var(--bg-white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+        }
+
+        .comparison-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: 20px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .comparison-table th {
+            background: var(--primary);
+            color: white;
+            font-weight: 600;
+            font-size: 18px;
+        }
+
+        .comparison-table td {
+            font-size: 16px;
+        }
+
+        .comparison-table td:first-child {
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .comparison-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .comparison-table tr:hover {
+            background: var(--bg-light);
+        }
+
+        /* How It Works */
+        .steps-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .step-card {
+            text-align: center;
+            position: relative;
+        }
+
+        .step-number {
+            display: inline-block;
+            width: 60px;
+            height: 60px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            font-size: 28px;
+            font-weight: 700;
+            line-height: 60px;
+            margin-bottom: 20px;
+        }
+
+        .step-card h3 {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--text-dark);
+        }
+
+        .step-card p {
+            font-size: 16px;
+            color: var(--text-light);
+        }
+
+        /* Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .feature-card {
+            background: var(--bg-white);
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            padding: 35px;
+            transition: all 0.3s;
+        }
+
+        .feature-card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-icon {
+            font-size: 40px;
+            margin-bottom: 20px;
+        }
+
+        .feature-card h3 {
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: var(--text-dark);
+        }
+
+        .feature-card p {
+            font-size: 16px;
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        /* Personas */
+        .personas-section {
+            background: var(--bg-light);
+        }
+
+        .personas-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .persona-card {
+            background: var(--bg-white);
+            border-radius: 12px;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+        }
+
+        .persona-avatar {
+            font-size: 64px;
+            margin-bottom: 20px;
+        }
+
+        .persona-card h3 {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--text-dark);
+        }
+
+        .persona-card .role {
+            font-size: 16px;
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .persona-card p {
+            font-size: 16px;
+            color: var(--text-light);
+        }
+
+        /* Pricing */
+        .pricing-card {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            border-radius: 16px;
+            padding: 60px;
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .pricing-card .price {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .pricing-card .price-description {
+            font-size: 18px;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .pricing-card .trial {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 30px;
+        }
+
+        .pricing-card .btn {
+            background: white;
+            color: var(--primary);
+            font-size: 18px;
+            padding: 15px 40px;
+        }
+
+        .pricing-card .btn:hover {
+            background: var(--bg-light);
+        }
+
+        /* FAQ */
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: var(--bg-white);
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 20px;
+            transition: all 0.3s;
+        }
+
+        .faq-item:hover {
+            border-color: var(--primary);
+        }
+
+        .faq-item h3 {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--text-dark);
+        }
+
+        .faq-item p {
+            font-size: 16px;
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+
+        /* CTA Footer */
+        .cta-footer {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .cta-footer h2 {
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .cta-footer p {
+            font-size: 20px;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+
+        .email-form {
+            display: flex;
+            gap: 15px;
+            max-width: 600px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .email-form input {
+            flex: 1;
+            min-width: 300px;
+            padding: 15px 20px;
+            border-radius: 8px;
+            border: none;
+            font-size: 16px;
+        }
+
+        .email-form button {
+            padding: 15px 40px;
+            background: var(--text-dark);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .email-form button:hover {
+            background: #334155;
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--text-dark);
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        footer p {
+            opacity: 0.7;
+            font-size: 14px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .hero .subheadline {
+                font-size: 22px;
+            }
+
+            .hero .description {
+                font-size: 18px;
+            }
+
+            .section-title {
+                font-size: 32px;
+            }
+
+            .section-subtitle {
+                font-size: 18px;
+            }
+
+            .hero-cta {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .header-cta {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .problem-grid,
+            .solution-grid,
+            .features-grid,
+            .personas-grid,
+            .steps-container {
+                grid-template-columns: 1fr;
+            }
+
+            .comparison-table {
+                overflow-x: auto;
+            }
+
+            .comparison-table table {
+                min-width: 600px;
+            }
+
+            .email-form {
+                flex-direction: column;
+            }
+
+            .email-form input {
+                min-width: 100%;
+            }
+
+            .pricing-card {
+                padding: 40px 20px;
+            }
+
+            .cta-footer h2 {
+                font-size: 32px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">ЮрХаб</div>
+                <div class="header-cta">
+                    <a href="#pricing" class="btn btn-secondary">Цены</a>
+                    <a href="#cta" class="btn btn-primary">Попробовать бесплатно</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>ЮрХаб — NotebookLM для юристов</h1>
+            <p class="subheadline">AI-workspace где все материалы дела в одном месте</p>
+            <p class="description">AI анализирует документы, находит риски и сроки по АПК РФ. Вы работаете в контексте, а не в хаосе. <strong>Экономия 70% времени</strong> на рутине.</p>
+            <div class="hero-cta">
+                <a href="#cta" class="btn btn-primary">Пилот 14 дней — ₽9,900</a>
+                <a href="#how-it-works" class="btn btn-secondary">Как это работает</a>
+            </div>
+            <p style="margin-top: 20px; font-size: 14px; color: var(--text-light);">
+                ✨ Workspace, не chatbot • Intelligence, не замена
+            </p>
+        </div>
+    </section>
+
+    <!-- Problem Statement -->
+    <section>
+        <div class="container">
+            <h2 class="section-title">Юристы SMB тонут в документах</h2>
+            <p class="section-subtitle">40% времени на рутину. Документы везде. Сроки теряются. CEO в слепой зоне.</p>
+            <div class="problem-grid">
+                <div class="problem-card">
+                    <div class="problem-icon">📄</div>
+                    <h3>40% времени на рутину</h3>
+                    <p>Чтение договоров, поиск фактов, ручное извлечение информации из сотен страниц. <strong>6-8 часов на сбор материалов</strong> по одному кейсу.</p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-icon">🗂️</div>
+                    <h3>Документы везде</h3>
+                    <p>Email, WhatsApp, корпоративные диски, бумажные папки. Нет единого источника истины. <strong>Потеря контекста</strong> при передаче дел.</p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-icon">⏰</div>
+                    <h3>Сроки теряются</h3>
+                    <p>Дедлайны по претензиям и суду разбросаны по стикерам, чатам и календарям. Результат: <strong>штрафы и пени</strong> за просрочки.</p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-icon">👁️</div>
+                    <h3>CEO в слепой зоне</h3>
+                    <p>Собственник не видит картину рисков, статус дел и прогресс команды. <strong>Реактивное управление</strong> вместо проактивного.</p>
+                </div>
+            </div>
+            <p style="text-align: center; margin-top: 40px; font-style: italic; color: var(--text-light); max-width: 700px; margin-left: auto; margin-right: auto;">
+                "Мы тратим больше времени на поиск нужного документа, чем на анализ самого дела"<br>
+                <small>— Главный юрист, дистрибуция, 120 человек</small>
+            </p>
+        </div>
+    </section>
+
+    <!-- Solution - Workspace Concept -->
+    <section style="background: var(--bg-light);">
+        <div class="container">
+            <h2 class="section-title">AI-workspace для юридических дел</h2>
+            <p class="section-subtitle" style="font-size: 24px; color: var(--primary); font-weight: 600; margin-bottom: 10px;">
+                Как NotebookLM, но для российской юридической практики
+            </p>
+            <p class="section-subtitle">Рабочее пространство, где все материалы дела живут вместе, а AI анализирует полный контекст</p>
+            <div class="solution-grid">
+                <div class="solution-card">
+                    <div class="solution-icon">📁</div>
+                    <h3>Document Hub</h3>
+                    <p>Все материалы дела в одном workspace. Любой формат: PDF, DOCX, audio, email. Автоматическая индексация.</p>
+                </div>
+                <div class="solution-card">
+                    <div class="solution-icon">🤖</div>
+                    <h3>AI Analysis</h3>
+                    <p>Извлекает риски, сроки, факты. Обучен на российском праве: АПК РФ, ГК РФ, 152-ФЗ. Не заменяет юриста, усиливает его.</p>
+                </div>
+                <div class="solution-card">
+                    <div class="solution-icon">🧠</div>
+                    <h3>Memory & Context</h3>
+                    <p>Помнит всю историю дела. Отвечает на вопросы в контексте. Передача дел без потери знаний.</p>
+                </div>
+                <div class="solution-card">
+                    <div class="solution-icon">⚡</div>
+                    <h3>Экономия времени</h3>
+                    <p><strong>От 6-8 часов → до 1-2 часов</strong> на сбор и анализ материалов. 70% экономия времени на рутине.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparison -->
+    <section class="comparison-section">
+        <div class="container">
+            <h2 class="section-title">Специально для российских юристов</h2>
+            <p class="section-subtitle">В отличие от универсальных AI-инструментов (как NotebookLM), ЮрХаб заточен под специфику юридической работы в России</p>
+            <div class="comparison-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Возможность</th>
+                            <th>NotebookLM</th>
+                            <th>ЮрХаб</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>AI-анализ документов</td>
+                            <td>✅</td>
+                            <td>✅</td>
+                        </tr>
+                        <tr>
+                            <td>Workspace для материалов</td>
+                            <td>✅</td>
+                            <td>✅</td>
+                        </tr>
+                        <tr>
+                            <td>Понимание российского права</td>
+                            <td>❌ Общий AI</td>
+                            <td>✅ АПК РФ, ГК РФ, 152-ФЗ</td>
+                        </tr>
+                        <tr>
+                            <td>Извлечение сроков и рисков</td>
+                            <td>❌ Ручной анализ</td>
+                            <td>✅ Автоматически</td>
+                        </tr>
+                        <tr>
+                            <td>Канбан для дел</td>
+                            <td>❌</td>
+                            <td>✅ Управление делами</td>
+                        </tr>
+                        <tr>
+                            <td>Управленческие отчеты</td>
+                            <td>❌</td>
+                            <td>✅ Дашборды и аналитика</td>
+                        </tr>
+                        <tr>
+                            <td>Работа команды</td>
+                            <td>❌</td>
+                            <td>✅ Коллаборация и роли</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section id="how-it-works">
+        <div class="container">
+            <h2 class="section-title">Как это работает</h2>
+            <p class="section-subtitle">Три простых шага от хаоса документов до структурированного workspace с AI-анализом</p>
+            <div class="steps-container">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <h3>Загрузите материалы</h3>
+                    <p>Документы, аудиозаписи, судебные акты, переписка — всё в одно место. Просто перетащите файлы в workspace дела.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <h3>AI анализирует и извлекает инсайты</h3>
+                    <p>Система автоматически находит риски, процессуальные сроки, ключевые факты и позиции сторон. RAG по российскому праву.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <h3>Работайте в едином workspace</h3>
+                    <p>Задавайте вопросы AI, делайте заметки, управляйте задачами на канбане. Весь контекст дела в одном месте.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Key Features -->
+    <section style="background: var(--bg-light);">
+        <div class="container">
+            <h2 class="section-title">Возможности платформы</h2>
+            <p class="section-subtitle">Всё необходимое для эффективной работы юриста — в одном инструменте</p>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🗂️</div>
+                    <h3>Document Hub</h3>
+                    <p>Все материалы дела в едином пространстве. Загружайте PDF, Word, аудио, переписку. Структурированное хранилище с версионностью и быстрым поиском.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🤖</div>
+                    <h3>AI Analysis</h3>
+                    <p>Автоматическое извлечение рисков, процессуальных сроков, ключевых фактов и позиций сторон. AI читает документы за вас и выделяет главное.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚖️</div>
+                    <h3>RAG по российскому праву</h3>
+                    <p>База знаний включает АПК РФ, ГК РФ, практику по досудебке и 152-ФЗ. AI понимает специфику российского права и дает точные ответы.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📚</div>
+                    <h3>Knowledge Base</h3>
+                    <p>Память всех дел компании. Ищите прецеденты, шаблоны, успешные стратегии. Новые сотрудники быстро входят в контекст.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🛠️</div>
+                    <h3>Workspace Tools</h3>
+                    <p>Заметки, timeline событий, канбан для задач, календарь сроков. Все инструменты для управления делом в одном интерфейсе.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">👥</div>
+                    <h3>Team Collaboration</h3>
+                    <p>Работа команды: роли, доступы, комментарии, совместное редактирование. Руководитель видит прогресс по всем делам на дашборде.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- For Whom -->
+    <section class="personas-section">
+        <div class="container">
+            <h2 class="section-title">Для кого ЮрХаб</h2>
+            <p class="section-subtitle">Решение для каждой роли в команде — от собственника до исполнителя</p>
+            <div class="personas-grid">
+                <div class="persona-card">
+                    <div class="persona-avatar">👔</div>
+                    <h3>Собственник SMB</h3>
+                    <p class="role">Контроль и прозрачность</p>
+                    <p>Видите все риски и сроки по делам. Управленческие дашборды показывают статус портфеля. Не нужно звонить юристу — вся информация в системе.</p>
+                </div>
+                <div class="persona-card">
+                    <div class="persona-avatar">👨‍💼</div>
+                    <h3>Юрруководитель</h3>
+                    <p class="role">Управление командой</p>
+                    <p>Контролируйте загрузку юристов, отслеживайте прогресс дел, создавайте отчеты для руководства. База знаний команды в одном месте — онбординг за день.</p>
+                </div>
+                <div class="persona-card">
+                    <div class="persona-avatar">⚖️</div>
+                    <h3>Юрист-исполнитель</h3>
+                    <p class="role">Меньше рутины, больше результата</p>
+                    <p>AI читает протоколы и извлекает инсайты. Не нужно перечитывать 50 страниц — задайте вопрос системе. Сосредоточьтесь на стратегии, а не на поиске информации.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section id="pricing">
+        <div class="container">
+            <h2 class="section-title">Pricing: доступнее чем нанять junior юриста</h2>
+            <p class="section-subtitle">Три тарифа для разных размеров команды. Пилот с полным доступом.</p>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 50px;">
+                <!-- Solo -->
+                <div style="background: white; border: 2px solid var(--border); border-radius: 16px; padding: 40px; text-align: center;">
+                    <h3 style="font-size: 24px; margin-bottom: 10px;">Solo</h3>
+                    <div style="font-size: 42px; font-weight: 700; color: var(--primary); margin: 20px 0;">₽14,900</div>
+                    <p style="color: var(--text-light); margin-bottom: 25px;">в месяц</p>
+                    <ul style="text-align: left; color: var(--text-light); margin-bottom: 30px; line-height: 2;">
+                        <li>✅ 20 дел/месяц</li>
+                        <li>✅ 5 расшифровок аудио</li>
+                        <li>✅ 10 GB хранилище</li>
+                        <li>✅ Basic support</li>
+                    </ul>
+                    <p style="font-size: 14px; color: var(--text-light);">Для малого бизнеса 20-50 человек</p>
+                </div>
+
+                <!-- Team (PRIMARY) -->
+                <div style="background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%); border: 3px solid var(--primary); border-radius: 16px; padding: 40px; text-align: center; color: white; transform: scale(1.05); box-shadow: 0 12px 40px rgba(37, 99, 235, 0.3);">
+                    <div style="background: white; color: var(--primary); padding: 5px 15px; border-radius: 20px; display: inline-block; font-weight: 700; margin-bottom: 10px;">⭐ РЕКОМЕНДУЕМ</div>
+                    <h3 style="font-size: 28px; margin-bottom: 10px; color: white;">Team</h3>
+                    <div style="font-size: 52px; font-weight: 700; margin: 20px 0;">₽39,900</div>
+                    <p style="opacity: 0.9; margin-bottom: 25px;">в месяц</p>
+                    <ul style="text-align: left; margin-bottom: 30px; line-height: 2; opacity: 0.95;">
+                        <li>✅ 100 дел/месяц</li>
+                        <li>✅ 20 расшифровок аудио</li>
+                        <li>✅ 50 GB хранилище</li>
+                        <li>✅ Priority support</li>
+                        <li>✅ Командная работа</li>
+                    </ul>
+                    <p style="font-size: 16px; font-weight: 600; opacity: 0.95;">ROI: стоимость 0.4 junior юриста</p>
+                    <p style="font-size: 14px; margin-top: 10px; opacity: 0.9;">Для SMB 50-200 человек</p>
+                </div>
+
+                <!-- Enterprise -->
+                <div style="background: white; border: 2px solid var(--border); border-radius: 16px; padding: 40px; text-align: center;">
+                    <h3 style="font-size: 24px; margin-bottom: 10px;">Enterprise</h3>
+                    <div style="font-size: 42px; font-weight: 700; color: var(--primary); margin: 20px 0;">₽99,900</div>
+                    <p style="color: var(--text-light); margin-bottom: 25px;">в месяц</p>
+                    <ul style="text-align: left; color: var(--text-light); margin-bottom: 30px; line-height: 2;">
+                        <li>✅ Unlimited дела</li>
+                        <li>✅ Unlimited расшифровки</li>
+                        <li>✅ Unlimited хранилище</li>
+                        <li>✅ Dedicated manager</li>
+                        <li>✅ Custom интеграции + SLA</li>
+                    </ul>
+                    <p style="font-size: 14px; color: var(--text-light);">Для компаний 200+ сотрудников</p>
+                </div>
+            </div>
+
+            <!-- ROI Comparison -->
+            <div style="max-width: 700px; margin: 60px auto 0; background: var(--bg-light); padding: 30px; border-radius: 12px; text-align: center;">
+                <h3 style="font-size: 20px; margin-bottom: 15px; color: var(--text-dark);">💰 Экономика vs hiring junior юриста</h3>
+                <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; margin-top: 20px;">
+                    <div>
+                        <p style="color: var(--text-light); font-size: 14px; margin-bottom: 5px;">Junior юрист</p>
+                        <p style="font-size: 24px; font-weight: 700; color: var(--danger);">₽104,000/мес</p>
+                        <p style="font-size: 12px; color: var(--text-light);">Зарплата + налоги</p>
+                    </div>
+                    <div>
+                        <p style="color: var(--text-light); font-size: 14px; margin-bottom: 5px;">ЮрХаб (Team)</p>
+                        <p style="font-size: 24px; font-weight: 700; color: var(--success);">₽39,900/мес</p>
+                        <p style="font-size: 12px; color: var(--text-light);">Все включено</p>
+                    </div>
+                    <div>
+                        <p style="color: var(--text-light); font-size: 14px; margin-bottom: 5px;">Экономия</p>
+                        <p style="font-size: 24px; font-weight: 700; color: var(--primary);">₽64,100/мес</p>
+                        <p style="font-size: 12px; color: var(--text-light);">62% экономия</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pilot Offer -->
+            <div class="pricing-card" style="margin-top: 60px; max-width: 500px;">
+                <div style="font-size: 28px; font-weight: 700; margin-bottom: 15px;">🚀 Пилот 14 дней</div>
+                <div class="price">₽9,900</div>
+                <p class="price-description">Полный доступ к Team функциям</p>
+                <a href="#cta" class="btn">Забронировать пилот</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section style="background: var(--bg-light);">
+        <div class="container">
+            <h2 class="section-title">Частые вопросы</h2>
+            <p class="section-subtitle">Отвечаем на главные сомнения перед стартом</p>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <h3>Чем ЮрХаб отличается от NotebookLM?</h3>
+                    <p>NotebookLM — универсальный AI-инструмент для работы с документами. ЮрХаб создан специально для российских юристов: мы добавили понимание АПК РФ, ГК РФ, автоматическое извлечение сроков и рисков, канбан для управления делами и управленческие отчеты. Это полноценный workspace для юридической команды, а не просто анализатор документов.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Заменяет ли ЮрХаб юриста?</h3>
+                    <p>Нет. ЮрХаб — это ассистент, который берет на себя рутину: чтение документов, поиск информации, отслеживание сроков. Юрист освобождается от механической работы и фокусируется на стратегии, переговорах, анализе рисков. AI не принимает решения — он помогает их принимать быстрее и на основе полной информации.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Какие документы поддерживаются?</h3>
+                    <p>PDF, Word (DOC/DOCX), текстовые файлы, аудиозаписи (транскрипция), изображения документов (OCR). Поддерживаем судебные акты, договоры, протоколы, претензии, переписку. Система автоматически распознает тип документа и извлекает релевантную информацию.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Как защищены данные?</h3>
+                    <p>Все данные хранятся на серверах в России с шифрованием. Соответствуем требованиям 152-ФЗ о персональных данных. Разграничение доступа по ролям: каждый пользователь видит только свои дела или дела своей команды. Регулярные бэкапы и возможность экспорта данных.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Сколько стоит ЮрХаб?</h3>
+                    <p>От ₽14,900/месяц за команду до 5 юристов. Включает все возможности платформы, безлимитное хранилище и техподдержку. Первые 14 дней — бесплатно, никаких карт и обязательств. Для крупных команд и корпораций — индивидуальные условия.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Нужно ли обучение для работы с платформой?</h3>
+                    <p>Нет. Интерфейс интуитивный — загрузили документы, задали вопрос AI, получили ответ. Для продвинутого использования (настройка воркфлоу, создание шаблонов отчетов) проводим 1-часовой онбординг. Также есть база знаний с видеоинструкциями и техподдержка в чате.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Можно ли интегрировать ЮрХаб с другими системами?</h3>
+                    <p>Да. Интеграции с популярными инструментами: почта (Gmail, Outlook), облачные хранилища (Google Drive, Яндекс.Диск), календари, мессенджеры (Telegram для уведомлений). Для корпоративных клиентов — API для интеграции с внутренними системами учета дел.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Footer -->
+    <section id="cta" class="cta-footer">
+        <div class="container">
+            <h2>Начните использовать ЮрХаб сегодня</h2>
+            <p style="font-size: 24px; margin-bottom: 30px;">Пилот 14 дней за ₽9,900 — полный доступ к Team функциям</p>
+            <p style="opacity: 0.9; margin-bottom: 40px;">Без долгосрочных обязательств. Отмена в любой момент. Техподдержка включена.</p>
+            <form class="email-form" action="#" method="post">
+                <input type="email" placeholder="Рабочий email" required>
+                <button type="submit" class="btn">Забронировать пилот</button>
+            </form>
+            <p style="margin-top: 30px; font-size: 14px; opacity: 0.8;">
+                ✅ Экономия 70% времени на рутине &nbsp;•&nbsp; ✅ ₽64k/мес vs hiring &nbsp;•&nbsp; ✅ Окупается с первого месяца
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 ЮрХаб. AI-workspace для юристов.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
