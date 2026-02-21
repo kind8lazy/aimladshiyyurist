@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ЮрХаб | AI-workspace для юристов</title>
+    <link rel="stylesheet" href="./design-tokens.css" />
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
@@ -16,8 +17,8 @@
           <small class="brand-architecture">Все материалы дела в одном месте. AI анализирует контекст.</small>
         </div>
 
-        <nav class="menu">
-          <button class="menu-item is-active" data-target="overview">Обзор</button>
+        <nav class="menu" aria-label="Основная навигация">
+          <button class="menu-item is-active" data-target="overview" aria-current="page">Обзор</button>
           <button class="menu-item" data-target="intake">Новый кейс</button>
           <button class="menu-item" data-target="board">Канбан</button>
           <button class="menu-item" data-target="reports">Отчеты</button>
@@ -55,14 +56,16 @@
         </section>
       </aside>
 
-      <main class="main">
-        <header class="topbar">
+      <main class="main" role="main">
+        <header class="topbar" aria-label="Workspace информация">
           <div>
             <h2>Workspace для юридических дел</h2>
             <p>ЮрХаб — AI-workspace где все материалы дела в одном месте. Экономия 70% времени на рутине.</p>
           </div>
           <div class="search-wrap">
+            <label for="search-input" class="sr-only">Поиск кейсов</label>
             <input id="search-input" type="search" placeholder="Поиск: компания, риск, тег" />
+            <label for="status-filter" class="sr-only">Фильтр по статусу</label>
             <select id="status-filter">
               <option value="ALL">Все статусы</option>
               <option value="NEW">Новый</option>
