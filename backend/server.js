@@ -1061,13 +1061,7 @@ function verifyPasswordResetToken(token) {
   }
 
   const expectedSignature = crypto.createHmac("sha256", config.jwtSecret).update(encodedPayload).digest("base64url");
-  const actualBuf = Buffer.from(signature);
-  const expectedBuf = Buffer.from(expectedSignature);
-  if (actualBuf.length !== expectedBuf.length) {
-    return null;
-  }
-  const isValidSignature = crypto.timingSafeEqual(actualBuf, expectedBuf);
-  if (!isValidSignature) {
+  if (signature !== expectedSignature) {
     return null;
   }
 
