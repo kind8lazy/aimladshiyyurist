@@ -177,5 +177,5 @@ function toSafeName(value) {
 }
 
 function isReadonlyFsError(error) {
-  return ["EROFS", "EPERM", "EACCES"].includes(error?.code);
+  return ["EROFS", "EPERM", "EACCES", "ENOENT"].includes(error?.code);
 }

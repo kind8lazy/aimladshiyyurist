@@ -975,7 +975,7 @@ async function resetPassword(req, res) {
     });
   } catch (error) {
     console.error("resetPassword failed", error);
-    return json(res, 500, { error: `reset_failed: ${error.message || "unknown"}` });
+    return json(res, 500, { error: "Internal server error" });
   }
 }
 
