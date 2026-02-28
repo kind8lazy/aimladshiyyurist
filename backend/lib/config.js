@@ -37,6 +37,13 @@ export function getConfig() {
     resendApiKey: `${process.env.RESEND_API_KEY || ""}`.trim(),
     resetEmailFrom: `${process.env.RESET_EMAIL_FROM || "Legal Ops AI <no-reply@example.com>"}`.trim(),
     resetEmailSubject: `${process.env.RESET_EMAIL_SUBJECT || "Код восстановления пароля"}`.trim(),
+    passwordResetCodeTtlMs: Math.max(60_000, Number(process.env.PASSWORD_RESET_CODE_TTL_MS || 15 * 60 * 1000)),
+    passwordResetRequestLimit: Math.max(1, Number(process.env.PASSWORD_RESET_REQUEST_LIMIT || 5)),
+    passwordResetRequestWindowMs: Math.max(
+      60_000,
+      Number(process.env.PASSWORD_RESET_REQUEST_WINDOW_MS || 15 * 60 * 1000),
+    ),
+    passwordResetVerifyMaxAttempts: Math.max(1, Number(process.env.PASSWORD_RESET_VERIFY_MAX_ATTEMPTS || 5)),
     jwtSecret: process.env.JWT_SECRET || "dev-secret",
   };
 }

@@ -94,6 +94,10 @@ npx vercel --prod
 - `RESEND_API_KEY=`
 - `RESET_EMAIL_FROM=Legal Ops AI <no-reply@example.com>`
 - `RESET_EMAIL_SUBJECT=Код восстановления пароля`
+- `PASSWORD_RESET_CODE_TTL_MS=900000`
+- `PASSWORD_RESET_REQUEST_LIMIT=5`
+- `PASSWORD_RESET_REQUEST_WINDOW_MS=900000`
+- `PASSWORD_RESET_VERIFY_MAX_ATTEMPTS=5`
 - `JWT_SECRET=change-me`
 
 ## Демо-логины
@@ -107,6 +111,8 @@ npx vercel --prod
 
 - `POST /api/auth/login`
 - `POST /api/auth/register`
+- `POST /api/auth/forgot-password`
+- `POST /api/auth/reset-password`
 - `GET /api/me`
 - `GET /api/health`
 - `GET /api/kpis`

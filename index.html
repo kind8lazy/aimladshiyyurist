@@ -35,6 +35,19 @@
             <button type="submit" class="action-btn">Войти</button>
             <button id="forgot-password-btn" type="button" class="link-btn">Забыли пароль?</button>
           </form>
+          <form id="forgot-form" class="auth-form hidden">
+            <input id="forgot-email" type="email" placeholder="E-mail для восстановления" required />
+            <button type="submit" class="action-btn">Отправить код</button>
+            <p class="auth-note">Код действует 15 минут.</p>
+            <button id="back-to-login-btn" type="button" class="link-btn">Вернуться ко входу</button>
+          </form>
+          <form id="reset-form" class="auth-form hidden">
+            <input id="reset-email" type="email" placeholder="E-mail" required />
+            <input id="reset-code" type="text" placeholder="6-значный код" inputmode="numeric" pattern="[0-9]{6}" maxlength="6" required />
+            <input id="reset-new-password" type="password" placeholder="Новый пароль (минимум 8 символов)" minlength="8" required />
+            <button type="submit" class="action-btn">Обновить пароль</button>
+            <button id="resend-code-btn" type="button" class="link-btn">Отправить код повторно</button>
+          </form>
           <form id="register-form" class="auth-form hidden">
             <input id="register-name" type="text" placeholder="Имя" required />
             <input id="register-email" type="email" placeholder="E-mail" required />

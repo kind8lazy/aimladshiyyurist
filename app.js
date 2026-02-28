@@ -30,6 +30,7 @@ const state = {
   assistantMemoryByMatter: {},
   assistantContextMatterId: null,
   authMode: "login",
+  passwordResetEmail: "",
 };
 
 const els = {
@@ -39,12 +40,20 @@ const els = {
   registerForm: document.getElementById("register-form"),
   loginEmail: document.getElementById("login-email"),
   loginPassword: document.getElementById("login-password"),
+  forgotForm: document.getElementById("forgot-form"),
+  forgotEmail: document.getElementById("forgot-email"),
+  resetForm: document.getElementById("reset-form"),
+  resetEmail: document.getElementById("reset-email"),
+  resetCode: document.getElementById("reset-code"),
+  resetNewPassword: document.getElementById("reset-new-password"),
   registerName: document.getElementById("register-name"),
   registerEmail: document.getElementById("register-email"),
   registerPassword: document.getElementById("register-password"),
   showLoginBtn: document.getElementById("show-login"),
   showRegisterBtn: document.getElementById("show-register"),
   forgotPasswordBtn: document.getElementById("forgot-password-btn"),
+  backToLoginBtn: document.getElementById("back-to-login-btn"),
+  resendCodeBtn: document.getElementById("resend-code-btn"),
   authSession: document.getElementById("auth-session"),
   authUser: document.getElementById("auth-user"),
   authStatus: document.getElementById("auth-status"),
@@ -121,11 +130,21 @@ function bindEvents() {
   els.seedButton.addEventListener("click", seedDemoData);
 
   els.loginForm.addEventListener("submit", handleLoginSubmit);
+  els.forgotForm.addEventListener("submit", handleForgotPasswordSubmit);
+  els.resetForm.addEventListener("submit", handleResetPasswordSubmit);
   els.registerForm.addEventListener("submit", handleRegisterSubmit);
   els.logoutBtn.addEventListener("click", handleLogout);
   els.showLoginBtn.addEventListener("click", () => setAuthMode("login"));
   els.showRegisterBtn.addEventListener("click", () => setAuthMode("register"));
-  els.forgotPasswordBtn.addEventListener("click", handleForgotPasswordFlow);
+  els.forgotPasswordBtn.addEventListener("click", () => {
+    state.passwordResetEmail = `${els.loginEmail.value || ""}`.trim().toLowerCase();
+    els.forgotEmail.value = state.passwordResetEmail;
+    setAuthMode("forgot");
+  });
+  els.backToLoginBtn.addEventListener("click", () => setAuthMode("login"));
+  els.resendCodeBtn.addEventListener("click", () => {
+    void requestPasswordResetCode(els.resetEmail.value.trim().toLowerCase(), { moveToResetForm: false });
+  });
 
   els.clearButton.addEventListener("click", () => {
     if (!state.user) {
@@ -260,7 +279,14 @@ function handleAssistantSubmit(event) {
 }
 
 function setAuthMode(mode) {
-  state.authMode = mode === "register" ? "register" : "login";
+  const allowedModes = new Set(["login", "register", "forgot", "reset"]);
+  state.authMode = allowedModes.has(mode) ? mode : "login";
+  if (state.authMode === "forgot" && state.passwordResetEmail) {
+    els.forgotEmail.value = state.passwordResetEmail;
+  }
+  if (state.authMode === "reset" && state.passwordResetEmail) {
+    els.resetEmail.value = state.passwordResetEmail;
+  }
   applyAuthUiState();
 }
 
@@ -370,47 +396,71 @@ async function handleRegisterSubmit(event) {
   }
 }
 
-async function handleForgotPasswordFlow() {
-  const emailSeed = `${els.loginEmail.value || ""}`.trim().toLowerCase();
-  const email = window.prompt("Введите e-mail аккаунта для восстановления пароля:", emailSeed);
+async function handleForgotPasswordSubmit(event) {
+  event.preventDefault();
+  const email = els.forgotEmail.value.trim().toLowerCase();
   if (!email) {
+    setAuthStatus("Укажи e-mail для восстановления.", "error");
+    return;
+  }
+
+  await requestPasswordResetCode(email, { moveToResetForm: true });
+}
+
+async function requestPasswordResetCode(email, options = {}) {
+  const normalizedEmail = `${email || ""}`.trim().toLowerCase();
+  if (!normalizedEmail) {
+    setAuthStatus("Укажи e-mail для восстановления.", "error");
+    return;
+  }
+
+  const { moveToResetForm = false } = options;
+  try {
+    const payload = await rawApiRequest("/api/auth/forgot-password", {
+      method: "POST",
+      body: { email: normalizedEmail },
+    });
+
+    state.passwordResetEmail = normalizedEmail;
+    els.resetEmail.value = normalizedEmail;
+    els.loginEmail.value = normalizedEmail;
+    if (moveToResetForm) {
+      setAuthMode("reset");
+    }
+
+    const demoHint = payload.demoCode ? ` Demo-код: ${payload.demoCode}` : "";
+    setAuthStatus(`${payload.message || "Код восстановления отправлен."}${demoHint}`, "success");
+  } catch (error) {
+    setAuthStatus(`Не удалось отправить код: ${error.message}`, "error");
+  }
+}
+
+async function handleResetPasswordSubmit(event) {
+  event.preventDefault();
+  const email = els.resetEmail.value.trim().toLowerCase();
+  const code = els.resetCode.value.trim();
+  const newPassword = els.resetNewPassword.value;
+
+  if (!email || !code || !newPassword) {
+    setAuthStatus("Заполни e-mail, код и новый пароль.", "error");
     return;
   }
 
   try {
-    const forgotPayload = await rawApiRequest("/api/auth/forgot-password", {
-      method: "POST",
-      body: {
-        email: email.trim().toLowerCase(),
-      },
-    });
-
-    const hint = forgotPayload.demoCode ? `\n\nКод восстановления (demo): ${forgotPayload.demoCode}` : "";
-    window.alert(`${forgotPayload.message || "Проверьте почту для кода восстановления."}${hint}`);
-
-    const code = window.prompt("Введите 6-значный код восстановления:");
-    if (!code) {
-      return;
-    }
-
-    const newPassword = window.prompt("Введите новый пароль (минимум 8 символов):");
-    if (!newPassword) {
-      return;
-    }
-
     await rawApiRequest("/api/auth/reset-password", {
       method: "POST",
       body: {
-        email: email.trim().toLowerCase(),
-        code: code.trim(),
+        email,
+        code,
         newPassword,
       },
     });
 
-    setAuthStatus("Пароль обновлен. Выполни вход с новым паролем.", "success");
-    els.loginEmail.value = email.trim().toLowerCase();
+    els.resetForm.reset();
+    els.loginEmail.value = email;
     els.loginPassword.value = "";
     setAuthMode("login");
+    setAuthStatus("Пароль обновлен. Выполни вход с новым паролем.", "success");
   } catch (error) {
     setAuthStatus(`Восстановление не выполнено: ${error.message}`, "error");
   }
@@ -448,9 +498,12 @@ function applyAuthUiState() {
   const isAuthed = Boolean(state.user && state.authToken);
   els.registerForm.classList.toggle("hidden", isAuthed || state.authMode !== "register");
   els.loginForm.classList.toggle("hidden", isAuthed || state.authMode !== "login");
+  els.forgotForm.classList.toggle("hidden", isAuthed || state.authMode !== "forgot");
+  els.resetForm.classList.toggle("hidden", isAuthed || state.authMode !== "reset");
   els.authSession.classList.toggle("hidden", !isAuthed);
   els.showLoginBtn.classList.toggle("hidden", isAuthed);
   els.showRegisterBtn.classList.toggle("hidden", isAuthed);
+  els.forgotPasswordBtn.classList.toggle("hidden", isAuthed || state.authMode !== "login");
   if (isAuthed) {
     els.authUser.textContent = `${state.user.name} (${state.user.role})`;
   } else {

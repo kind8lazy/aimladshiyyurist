@@ -41,6 +41,7 @@ const mimeByExt = {
 
 const sessions = new Map();
 const passwordResetCodes = new Map();
+const passwordResetRequestState = new Map();
 const transcriptionJobs = new Map();
 const transcribeRateState = new Map();
 const assistantAttachmentTextCache = new Map();
@@ -872,6 +873,17 @@ async function forgotPassword(req, res) {
     return json(res, 400, { error: "invalid email format" });
   }
 
+  const requestRate = consumeRateToken(passwordResetRequestState, email, {
+    limit: config.passwordResetRequestLimit,
+    windowMs: config.passwordResetRequestWindowMs,
+  });
+  if (!requestRate.allowed) {
+    return json(res, 429, {
+      error: "слишком много запросов на восстановление, повторите позже",
+      retryAfterSec: Math.ceil((requestRate.retryAtMs - Date.now()) / 1000),
+    });
+  }
+
   const user = db.users.find((item) => item.email.toLowerCase() === email);
   if (!user) {
     return json(res, 200, {
@@ -882,8 +894,9 @@ async function forgotPassword(req, res) {
 
   const code = `${Math.floor(100000 + Math.random() * 900000)}`;
   passwordResetCodes.set(email, {
-    code,
-    expiresAt: Date.now() + 15 * 60 * 1000,
+    codeHash: hashResetCode(code),
+    attempts: 0,
+    expiresAt: Date.now() + config.passwordResetCodeTtlMs,
   });
 
   const sent = await sendPasswordResetEmail({
@@ -895,7 +908,7 @@ async function forgotPassword(req, res) {
   return json(res, 200, {
     ok: true,
     message: sent
-      ? "Код восстановления отправлен на e-mail. Срок действия 15 минут."
+      ? "Код восстановления отправлен на e-mail."
       : "Код восстановления создан. Почтовый сервис не настроен, используйте demo-код.",
     demoCode: sent ? undefined : code,
   });
@@ -927,11 +940,20 @@ async function resetPassword(req, res) {
   }
 
   const entry = passwordResetCodes.get(email);
-  if (!entry || entry.code !== code) {
+  if (!entry) {
     return json(res, 400, { error: "invalid or expired reset code" });
   }
   if (entry.expiresAt < Date.now()) {
     passwordResetCodes.delete(email);
+    return json(res, 400, { error: "invalid or expired reset code" });
+  }
+  if (entry.attempts >= config.passwordResetVerifyMaxAttempts) {
+    passwordResetCodes.delete(email);
+    return json(res, 429, { error: "лимит попыток исчерпан, запросите новый код" });
+  }
+  if (entry.codeHash !== hashResetCode(code)) {
+    entry.attempts += 1;
+    passwordResetCodes.set(email, entry);
     return json(res, 400, { error: "invalid or expired reset code" });
   }
 
@@ -1020,6 +1042,31 @@ function escapeHtmlForEmail(value) {
     .replaceAll(">", "&gt;")
     .replaceAll('"', "&quot;")
     .replaceAll("'", "&#39;");
+}
+
+function hashResetCode(code) {
+  return crypto.createHash("sha256").update(`${code}`).digest("hex");
+}
+
+function consumeRateToken(map, key, { limit, windowMs }) {
+  const now = Date.now();
+  const rawBucket = map.get(key) || [];
+  const bucket = rawBucket.filter((timestamp) => now - timestamp < windowMs);
+
+  if (bucket.length >= limit) {
+    const oldest = bucket[0];
+    return {
+      allowed: false,
+      retryAtMs: oldest + windowMs,
+    };
+  }
+
+  bucket.push(now);
+  map.set(key, bucket);
+  return {
+    allowed: true,
+    retryAtMs: now,
+  };
 }
 
 async function createMatter(req, res, user) {
