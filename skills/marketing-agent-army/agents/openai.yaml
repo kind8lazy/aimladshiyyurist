@@ -1,0 +1,4 @@
+interface:
+  display_name: "Marketing Agent Army"
+  short_description: "Coordinate growth agents and feed product improvements"
+  default_prompt: "Act as my Marketing Agent Army for a B2B legal ops SaaS. Build a weekly command brief, experiment backlog, daily execution plan, and convert market signals into product tasks with acceptance criteria."

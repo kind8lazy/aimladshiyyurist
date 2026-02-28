@@ -1,6 +1,6 @@
-const AUTH_TOKEN_KEY = "ai-legal-ops-auth-token-v1";
-const MASTER_BRAND_NAME = "ЮрШтаб AI";
-const ASSISTANT_PERSONA_NAME = "Младший Юрист AI 24/7";
+const AUTH_TOKEN_KEY = "legalhub-auth-token-v1";
+const MASTER_BRAND_NAME = "legalhub";
+const ASSISTANT_PERSONA_NAME = "legalhub";
 const STATUS_ORDER = ["NEW", "IN_REVIEW", "BLOCKED", "READY", "CLOSED"];
 const STATUS_LABELS = {
   NEW: "Новый",
@@ -205,7 +205,7 @@ function bindEvents() {
     const fileDate = new Date().toISOString().slice(0, 10);
     const link = document.createElement("a");
     link.href = URL.createObjectURL(blob);
-    link.download = `ai-legal-ops-report-${fileDate}.md`;
+    link.download = `legalhub-report-${fileDate}.md`;
     link.click();
     URL.revokeObjectURL(link.href);
   });
@@ -385,9 +385,7 @@ async function handleForgotPasswordFlow() {
       },
     });
 
-    const hint = forgotPayload.demoCode
-      ? `\n\nКод восстановления (demo): ${forgotPayload.demoCode}`
-      : "";
+    const hint = forgotPayload.demoCode ? `\n\nКод восстановления (demo): ${forgotPayload.demoCode}` : "";
     window.alert(`${forgotPayload.message || "Проверьте почту для кода восстановления."}${hint}`);
 
     const code = window.prompt("Введите 6-значный код восстановления:");

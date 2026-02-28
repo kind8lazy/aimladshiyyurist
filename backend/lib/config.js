@@ -34,6 +34,9 @@ export function getConfig() {
     ocrTesseractLang: `${process.env.OCR_TESSERACT_LANG || "rus+eng"}`.trim() || "rus+eng",
     ocrUseOpenAiFallback: `${process.env.OCR_OPENAI_FALLBACK || "1"}` !== "0",
     ocrOpenAiMaxPages: Math.max(1, Math.min(10, Number(process.env.OCR_OPENAI_MAX_PAGES || 3))),
+    resendApiKey: `${process.env.RESEND_API_KEY || ""}`.trim(),
+    resetEmailFrom: `${process.env.RESET_EMAIL_FROM || "Legal Ops AI <no-reply@example.com>"}`.trim(),
+    resetEmailSubject: `${process.env.RESET_EMAIL_SUBJECT || "Код восстановления пароля"}`.trim(),
     jwtSecret: process.env.JWT_SECRET || "dev-secret",
   };
 }

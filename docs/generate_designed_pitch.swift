@@ -74,7 +74,7 @@ func featureCard(x: CGFloat, y: CGFloat, w: CGFloat, h: CGFloat, title: String, 
 
 func slide1() {
     drawBackground()
-    sectionTitle("ЮрОперации ИИ", "Операционная система юрфункции для SMB")
+    sectionTitle("legalhub", "Операционная система юрфункции для SMB")
     drawText("Для дистрибуции в Москве: сроки, риски и деньги под управлением в одном контуре", rect: NSRect(x: 110, y: 350, width: 1200, height: 140), size: 34, weight: .medium)
 
     roundedRect(NSRect(x: 110, y: 500, width: 460, height: 84), radius: 42, fill: c(0xF59E0B))

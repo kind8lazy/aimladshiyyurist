@@ -1,15 +1,15 @@
-# ЮрШтаб AI для SMB (Prototype)
+# legalhub для SMB (Prototype)
 
 Прототип платформы для legal operations в российском SMB: intake кейсов, приоритизация рисков, RAG по локальной юридической базе и role-based backend API.
 
 Архитектура бренда:
-- `Master-brand`: `ЮрШтаб AI`
-- `Product persona`: `Младший Юрист AI 24/7`
+- `Master-brand`: `legalhub`
+- `Product persona`: `legalhub`
 
 ## Что реализовано
 
 - Frontend MVP (dashboard, intake, канбан, отчеты).
-- Постоянный UX-слой персоны `Младший Юрист AI 24/7`: быстрые команды, контекст по выбранному кейсу, память заметок по делу.
+- Постоянный UX-слой персоны `legalhub`: быстрые команды, контекст по выбранному кейсу, память заметок по делу.
 - Упрощенный intake в стиле `quick start`: для старта достаточно `Компания + Что случилось + материалы` (остальные поля в блоке «Дополнительно»).
 - Backend API на Node.js (`http` без внешних зависимостей).
 - Авторизация и роли: `OWNER`, `LEGAL_MANAGER`, `ANALYST`, `VIEWER`.
@@ -91,6 +91,9 @@ npx vercel --prod
 - `OCR_TESSERACT_LANG=rus+eng`
 - `OCR_OPENAI_FALLBACK=1`
 - `OCR_OPENAI_MAX_PAGES=3`
+- `RESEND_API_KEY=`
+- `RESET_EMAIL_FROM=Legal Ops AI <no-reply@example.com>`
+- `RESET_EMAIL_SUBJECT=Код восстановления пароля`
 - `JWT_SECRET=change-me`
 
 ## Демо-логины

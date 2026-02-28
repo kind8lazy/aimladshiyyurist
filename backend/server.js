@@ -886,10 +886,18 @@ async function forgotPassword(req, res) {
     expiresAt: Date.now() + 15 * 60 * 1000,
   });
 
+  const sent = await sendPasswordResetEmail({
+    to: email,
+    code,
+    userName: user.name,
+  });
+
   return json(res, 200, {
     ok: true,
-    message: "Код восстановления создан. Срок действия 15 минут.",
-    demoCode: code,
+    message: sent
+      ? "Код восстановления отправлен на e-mail. Срок действия 15 минут."
+      : "Код восстановления создан. Почтовый сервис не настроен, используйте demo-код.",
+    demoCode: sent ? undefined : code,
   });
 }
 
@@ -965,6 +973,53 @@ function clearUserSessions(userId) {
       sessions.delete(token);
     }
   }
+}
+
+async function sendPasswordResetEmail({ to, code, userName }) {
+  if (!config.resendApiKey) {
+    return false;
+  }
+
+  const safeName = `${userName || "коллега"}`.trim();
+  const html = [
+    `<p>Здравствуйте, ${escapeHtmlForEmail(safeName)}.</p>`,
+    "<p>Вы запросили восстановление пароля в legalhub.</p>",
+    `<p><strong>Код восстановления: ${escapeHtmlForEmail(code)}</strong></p>`,
+    "<p>Код действует 15 минут. Если запрос делали не вы, проигнорируйте письмо.</p>",
+  ].join("");
+
+  try {
+    const response = await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${config.resendApiKey}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        from: config.resetEmailFrom,
+        to: [to],
+        subject: config.resetEmailSubject,
+        html,
+      }),
+    });
+
+    if (!response.ok) {
+      return false;
+    }
+
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+function escapeHtmlForEmail(value) {
+  return `${value || ""}`
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#39;");
 }
 
 async function createMatter(req, res, user) {
@@ -1884,7 +1939,7 @@ if (isDirectRun) {
   await ensureBootstrapped();
   const server = http.createServer(requestHandler);
   server.listen(config.port, () => {
-    console.log(`ЮрОперации ИИ backend запущен на http://localhost:${config.port}`);
+    console.log(`legalhub backend запущен на http://localhost:${config.port}`);
     console.log(`Loaded matters: ${db.matters.length}, RAG docs: ${db.ragDocuments.length}, users: ${db.users.length}`);
   });
 }
