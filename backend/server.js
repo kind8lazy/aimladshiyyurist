@@ -927,51 +927,56 @@ async function resetPassword(req, res) {
     return json(res, 400, { error: "Invalid JSON body" });
   }
 
-  const email = `${body.email || ""}`.trim().toLowerCase();
-  const code = `${body.code || ""}`.trim();
-  const newPassword = `${body.newPassword || ""}`;
-  const resetToken = `${body.resetToken || ""}`.trim();
-  if (!isValidEmail(email)) {
-    return json(res, 400, { error: "invalid email format" });
-  }
-  if (!code || !/^\d{6}$/.test(code)) {
-    return json(res, 400, { error: "invalid reset code" });
-  }
-  if (newPassword.length < 8) {
-    return json(res, 400, { error: "password must be at least 8 chars" });
-  }
-  if (!resetToken) {
-    return json(res, 400, { error: "missing reset token" });
-  }
+  try {
+    const email = `${body.email || ""}`.trim().toLowerCase();
+    const code = `${body.code || ""}`.trim();
+    const newPassword = `${body.newPassword || ""}`;
+    const resetToken = `${body.resetToken || ""}`.trim();
+    if (!isValidEmail(email)) {
+      return json(res, 400, { error: "invalid email format" });
+    }
+    if (!code || !/^\d{6}$/.test(code)) {
+      return json(res, 400, { error: "invalid reset code" });
+    }
+    if (newPassword.length < 8) {
+      return json(res, 400, { error: "password must be at least 8 chars" });
+    }
+    if (!resetToken) {
+      return json(res, 400, { error: "missing reset token" });
+    }
 
-  const tokenPayload = verifyPasswordResetToken(resetToken);
-  if (!tokenPayload) {
-    return json(res, 400, { error: "invalid or expired reset token" });
-  }
-  if (tokenPayload.expiresAt < Date.now()) {
-    return json(res, 400, { error: "invalid or expired reset token" });
-  }
-  if (tokenPayload.email !== email) {
-    return json(res, 400, { error: "reset token does not match email" });
-  }
-  if (tokenPayload.codeHash !== hashResetCode(code)) {
-    return json(res, 400, { error: "invalid or expired reset code" });
-  }
+    const tokenPayload = verifyPasswordResetToken(resetToken);
+    if (!tokenPayload) {
+      return json(res, 400, { error: "invalid or expired reset token" });
+    }
+    if (tokenPayload.expiresAt < Date.now()) {
+      return json(res, 400, { error: "invalid or expired reset token" });
+    }
+    if (tokenPayload.email !== email) {
+      return json(res, 400, { error: "reset token does not match email" });
+    }
+    if (tokenPayload.codeHash !== hashResetCode(code)) {
+      return json(res, 400, { error: "invalid or expired reset code" });
+    }
 
-  const user = db.users.find((item) => item.email.toLowerCase() === email);
-  if (!user) {
-    return json(res, 404, { error: "user not found" });
+    const user = db.users.find((item) => item.email.toLowerCase() === email);
+    if (!user) {
+      return json(res, 404, { error: "user not found" });
+    }
+
+    user.passwordHash = crypto.createHash("sha256").update(newPassword).digest("hex");
+    user.updatedAt = nowIso();
+    await saveUsers(db.users);
+    clearUserSessions(user.id);
+
+    return json(res, 200, {
+      ok: true,
+      message: "Пароль обновлен. Войди с новым паролем.",
+    });
+  } catch (error) {
+    console.error("resetPassword failed", error);
+    return json(res, 500, { error: `reset_failed: ${error.message || "unknown"}` });
   }
-
-  user.passwordHash = crypto.createHash("sha256").update(newPassword).digest("hex");
-  user.updatedAt = nowIso();
-  await saveUsers(db.users);
-  clearUserSessions(user.id);
-
-  return json(res, 200, {
-    ok: true,
-    message: "Пароль обновлен. Войди с новым паролем.",
-  });
 }
 
 function authenticate(req) {
