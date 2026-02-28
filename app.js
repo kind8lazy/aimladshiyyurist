@@ -31,6 +31,7 @@ const state = {
   assistantContextMatterId: null,
   authMode: "login",
   passwordResetEmail: "",
+  passwordResetToken: "",
 };
 
 const els = {
@@ -138,6 +139,7 @@ function bindEvents() {
   els.showRegisterBtn.addEventListener("click", () => setAuthMode("register"));
   els.forgotPasswordBtn.addEventListener("click", () => {
     state.passwordResetEmail = `${els.loginEmail.value || ""}`.trim().toLowerCase();
+    state.passwordResetToken = "";
     els.forgotEmail.value = state.passwordResetEmail;
     setAuthMode("forgot");
   });
@@ -422,6 +424,7 @@ async function requestPasswordResetCode(email, options = {}) {
     });
 
     state.passwordResetEmail = normalizedEmail;
+    state.passwordResetToken = payload.resetToken || "";
     els.resetEmail.value = normalizedEmail;
     els.loginEmail.value = normalizedEmail;
     if (moveToResetForm) {
@@ -440,9 +443,15 @@ async function handleResetPasswordSubmit(event) {
   const email = els.resetEmail.value.trim().toLowerCase();
   const code = els.resetCode.value.trim();
   const newPassword = els.resetNewPassword.value;
+  const resetToken = `${state.passwordResetToken || ""}`.trim();
 
   if (!email || !code || !newPassword) {
     setAuthStatus("Заполни e-mail, код и новый пароль.", "error");
+    return;
+  }
+  if (!resetToken) {
+    setAuthStatus("Сначала запроси код восстановления заново.", "error");
+    setAuthMode("forgot");
     return;
   }
 
@@ -453,10 +462,12 @@ async function handleResetPasswordSubmit(event) {
         email,
         code,
         newPassword,
+        resetToken,
       },
     });
 
     els.resetForm.reset();
+    state.passwordResetToken = "";
     els.loginEmail.value = email;
     els.loginPassword.value = "";
     setAuthMode("login");
@@ -473,6 +484,7 @@ function handleLogout() {
   state.selectedMatterId = null;
   state.reportText = "";
   state.assistantContextMatterId = null;
+  state.passwordResetToken = "";
   persistAuthToken();
   applyAuthUiState();
   addAssistantMessage({

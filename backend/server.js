@@ -40,7 +40,6 @@ const mimeByExt = {
 };
 
 const sessions = new Map();
-const passwordResetCodes = new Map();
 const passwordResetRequestState = new Map();
 const transcriptionJobs = new Map();
 const transcribeRateState = new Map();
@@ -893,10 +892,11 @@ async function forgotPassword(req, res) {
   }
 
   const code = `${Math.floor(100000 + Math.random() * 900000)}`;
-  passwordResetCodes.set(email, {
+  const expiresAt = Date.now() + config.passwordResetCodeTtlMs;
+  const resetToken = createPasswordResetToken({
+    email,
     codeHash: hashResetCode(code),
-    attempts: 0,
-    expiresAt: Date.now() + config.passwordResetCodeTtlMs,
+    expiresAt,
   });
 
   const sent = await sendPasswordResetEmail({
@@ -911,6 +911,7 @@ async function forgotPassword(req, res) {
       ? "Код восстановления отправлен на e-mail."
       : "Код восстановления создан. Почтовый сервис не настроен, используйте demo-код.",
     demoCode: sent ? undefined : code,
+    resetToken,
   });
 }
 
@@ -929,6 +930,7 @@ async function resetPassword(req, res) {
   const email = `${body.email || ""}`.trim().toLowerCase();
   const code = `${body.code || ""}`.trim();
   const newPassword = `${body.newPassword || ""}`;
+  const resetToken = `${body.resetToken || ""}`.trim();
   if (!isValidEmail(email)) {
     return json(res, 400, { error: "invalid email format" });
   }
@@ -938,22 +940,21 @@ async function resetPassword(req, res) {
   if (newPassword.length < 8) {
     return json(res, 400, { error: "password must be at least 8 chars" });
   }
+  if (!resetToken) {
+    return json(res, 400, { error: "missing reset token" });
+  }
 
-  const entry = passwordResetCodes.get(email);
-  if (!entry) {
-    return json(res, 400, { error: "invalid or expired reset code" });
+  const tokenPayload = verifyPasswordResetToken(resetToken);
+  if (!tokenPayload) {
+    return json(res, 400, { error: "invalid or expired reset token" });
   }
-  if (entry.expiresAt < Date.now()) {
-    passwordResetCodes.delete(email);
-    return json(res, 400, { error: "invalid or expired reset code" });
+  if (tokenPayload.expiresAt < Date.now()) {
+    return json(res, 400, { error: "invalid or expired reset token" });
   }
-  if (entry.attempts >= config.passwordResetVerifyMaxAttempts) {
-    passwordResetCodes.delete(email);
-    return json(res, 429, { error: "лимит попыток исчерпан, запросите новый код" });
+  if (tokenPayload.email !== email) {
+    return json(res, 400, { error: "reset token does not match email" });
   }
-  if (entry.codeHash !== hashResetCode(code)) {
-    entry.attempts += 1;
-    passwordResetCodes.set(email, entry);
+  if (tokenPayload.codeHash !== hashResetCode(code)) {
     return json(res, 400, { error: "invalid or expired reset code" });
   }
 
@@ -965,7 +966,6 @@ async function resetPassword(req, res) {
   user.passwordHash = crypto.createHash("sha256").update(newPassword).digest("hex");
   user.updatedAt = nowIso();
   await saveUsers(db.users);
-  passwordResetCodes.delete(email);
   clearUserSessions(user.id);
 
   return json(res, 200, {
@@ -1046,6 +1046,41 @@ function escapeHtmlForEmail(value) {
 
 function hashResetCode(code) {
   return crypto.createHash("sha256").update(`${code}`).digest("hex");
+}
+
+function createPasswordResetToken(payload) {
+  const encodedPayload = Buffer.from(JSON.stringify(payload), "utf-8").toString("base64url");
+  const signature = crypto.createHmac("sha256", config.jwtSecret).update(encodedPayload).digest("base64url");
+  return `${encodedPayload}.${signature}`;
+}
+
+function verifyPasswordResetToken(token) {
+  const [encodedPayload, signature] = `${token || ""}`.split(".");
+  if (!encodedPayload || !signature) {
+    return null;
+  }
+
+  const expectedSignature = crypto.createHmac("sha256", config.jwtSecret).update(encodedPayload).digest("base64url");
+  const actualBuf = Buffer.from(signature);
+  const expectedBuf = Buffer.from(expectedSignature);
+  if (actualBuf.length !== expectedBuf.length) {
+    return null;
+  }
+  const isValidSignature = crypto.timingSafeEqual(actualBuf, expectedBuf);
+  if (!isValidSignature) {
+    return null;
+  }
+
+  try {
+    const json = Buffer.from(encodedPayload, "base64url").toString("utf-8");
+    const payload = JSON.parse(json);
+    if (!payload || typeof payload !== "object") {
+      return null;
+    }
+    return payload;
+  } catch {
+    return null;
+  }
 }
 
 function consumeRateToken(map, key, { limit, windowMs }) {
